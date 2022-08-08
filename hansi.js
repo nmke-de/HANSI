@@ -43,13 +43,14 @@ const attributeNames = [
 	"Glück"
 ];
 
-const slide50Node = (name, attribute, value=0) => {
+const slide50Node = (name, attribute=undefined, value=0) => {
 	/*
 	<div class="tr $(codify attribute)">
 		<label class="td" for="$(codify name)">$name</label>
 		<input class="td" type="range" min="0" max="50" name="$(codify name)" value="$value">
 	</div>
 	*/
+	if(!attribute) attribute = name;
 	let node = C("div");
 	node.class = "tr " + codify(attribute);
 	let child = A(node)(C("label"));
@@ -99,8 +100,8 @@ const newCharacter = () => {
 	let child = _(C("textarea"));
 	child.name = "backstory";
 	child.placeholder = "Backstory";
-	
-	;
+	_(h2Node("Attributes"));
+	attributeNames.forEach(attr => _(slide50Node(attr)));
 	Q("sheet").appendChild(dialog);
 	dialog.show();
 };
