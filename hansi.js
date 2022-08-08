@@ -94,6 +94,13 @@ const skillNode = (name, checked=false) => {
 	return node;
 };
 
+const newSkillNode = () => {
+	let node = C("input");
+	node.type = "text";
+	node.placeholder = "Skillname";
+	return node;
+};
+
 const itemNode = (name="", count=0, description="") => {
 	// TODO define input-data names.
 	let node = C("div");
@@ -116,15 +123,17 @@ const itemNode = (name="", count=0, description="") => {
 	return node;
 };
 
-const newEntryButtonNode = (faketable, node) => {
-	let _node = C("div");
-	_node.class = "append-button-div";
-	let child = A(_node)(C("button"));
+const newEntryButtonNode = (faketable, nodegen, subnode=null) => {
+	// TODO give more options
+	let node = C("div");
+	node.class = "append-button-div";
+	if (subnode) A(node)(subnode);
+	let child = A(node)(C("button"));
 	child.class = "append-button";
 	child.innerText = "+";
 	child.type = "button";
-	child.onclick = () => A(faketable)(node.cloneNode(true));
-	return _node;
+	child.onclick = () => A(faketable)(nodegen());
+	return node;
 };
 
 const newCharacter = () => {
@@ -148,10 +157,10 @@ const newCharacter = () => {
 	child = _(fakeTableNode("skills"));
 	A(child)(h2Node("Andere Skills"));
 	// TODO skill nodes
+	_(newEntryButtonNode(child, skillNode, newSkillNode()));
 	child = _(fakeTableNode("inventory"));
 	A(child)(h2Node("Inventar"));
-	// TODO inventory nodes
-	_(newEntryButtonNode(child, itemNode()));
+	_(newEntryButtonNode(child, itemNode));
 	Q("sheet").appendChild(dialog);
 	dialog.show();
 };
