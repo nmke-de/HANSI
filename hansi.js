@@ -174,7 +174,7 @@ const newCharacter = () => {
 	attributeNames.forEach(attr => A(child)(slide50Node(attr)));
 	child = _(fakeTableNode("stats"));
 	A(child)(h2Node("Werte"));
-	// TODO stat nodes
+	// TODO stat nodes from template
 	_(newEntryButtonNode(child, (subnode) => slide50Node(subnode.firstChild.value, subnode.lastChild.value), newStatNode()));
 	child = _(fakeTableNode("skills"));
 	A(child)(h2Node("Andere Skills"));
