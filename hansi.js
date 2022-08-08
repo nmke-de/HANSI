@@ -132,7 +132,7 @@ const newEntryButtonNode = (faketable, nodegen, subnode=null) => {
 	child.class = "append-button";
 	child.innerText = "+";
 	child.type = "button";
-	child.onclick = () => A(faketable)(nodegen());
+	child.onclick = () => A(faketable)(nodegen(subnode?subnode:""));
 	return node;
 };
 
@@ -156,8 +156,8 @@ const newCharacter = () => {
 	// TODO stat nodes
 	child = _(fakeTableNode("skills"));
 	A(child)(h2Node("Andere Skills"));
-	// TODO skill nodes
-	_(newEntryButtonNode(child, skillNode, newSkillNode()));
+	// TODO skill nodes from template
+	_(newEntryButtonNode(child, (subnode) => skillNode(subnode.value), newSkillNode()));
 	child = _(fakeTableNode("inventory"));
 	A(child)(h2Node("Inventar"));
 	_(newEntryButtonNode(child, itemNode));
