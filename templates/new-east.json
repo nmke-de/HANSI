@@ -1,5 +1,7 @@
 {
 	"template": "New East",
+	"attribute_points": 175,
+	"stat_points": 500,
 	"stats": [
 		{
 			"name": "Kultur",

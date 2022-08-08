@@ -1,5 +1,7 @@
 {
 	"template": "empty",
+	"attribute_points": 175,
+	"stat_points": 500,
 	"stats": [],
 	"skills": []
 }
