@@ -116,6 +116,17 @@ const itemNode = (name="", description="") => {
 	return node;
 };
 
+const newEntryButtonNode = (faketable, node) => {
+	let _node = C("div");
+	_node.class = "append-button-div";
+	let child = A(_node)(C("button"));
+	child.class = "append-button";
+	child.innerText = "+";
+	child.type = "button";
+	child.onclick = () => A(faketable)(node.cloneNode(true));
+	return _node;
+};
+
 const newCharacter = () => {
 	// TODO do more than a demo here!
 	let dialog = document.createElement("dialog");
