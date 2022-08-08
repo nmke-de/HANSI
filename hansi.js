@@ -34,6 +34,12 @@ const h2Node = (text) => {
 	return node;
 };
 
+const fakeTableNode = (id) => {
+	let node = C("div");
+	node.class = "table " + id;
+	return node;
+};
+
 const attributeNames = [
 	"Bildung",
 	"Charisma",
@@ -91,7 +97,7 @@ const skillNode = (name, checked=false) => {
 const newCharacter = () => {
 	// TODO do more than a demo here!
 	let dialog = document.createElement("dialog");
-	let form = A(dialog)("form");
+	let form = A(dialog)(C("form"));
 	form.method = "dialog";
 	let _ = A(form);
 	
@@ -101,7 +107,17 @@ const newCharacter = () => {
 	child.name = "backstory";
 	child.placeholder = "Backstory";
 	_(h2Node("Attributes"));
-	attributeNames.forEach(attr => _(slide50Node(attr)));
+	child = _(fakeTableNode("attributes"));
+	attributeNames.forEach(attr => A(child)(slide50Node(attr)));
+	_(h2Node("Werte"));
+	child = _(fakeTableNode("stats"));
+	// TODO stat nodes
+	_(h2Node("Andere Skills"));
+	child = _(fakeTableNode("skills"));
+	// TODO skill nodes
+	_(h2Node("Inventar"));
+	child = _(fakeTableNode("inventory"));
+	// TODO inventory nodes
 	Q("sheet").appendChild(dialog);
 	dialog.show();
 };
