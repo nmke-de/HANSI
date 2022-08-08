@@ -92,7 +92,29 @@ const skillNode = (name, checked=false) => {
 	child.for = codify(name);
 	child.innerText = name;
 	return node;
-}; 
+};
+
+const itemNode = (name="", description="") => {
+	// TODO define input-data names.
+	let node = C("div");
+	node.class = "tr";
+	let child = A(node)(C("input"));
+	child.class = "td";
+	child.type = "number";
+	child.min = 0;
+	child.value = 0;
+	child.placeholder = "Anzahl";
+	child = A(node)(C("input"));
+	child.class = "td";
+	child.type = "text";
+	child.value = name;
+	child.placeholder = "Gegenstandsname";
+	child = A(node)(C("textarea"));
+	child.class = "td";
+	child.value = description;
+	child.placeholder = "Beschreibung";
+	return node;
+};
 
 const newCharacter = () => {
 	// TODO do more than a demo here!
