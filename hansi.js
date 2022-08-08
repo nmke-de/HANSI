@@ -73,6 +73,26 @@ const slide50Node = (name, attribute=undefined, value=0) => {
 	return node;
 };
 
+const newStatNode = () => {
+	let node = C("div");
+	node.class = "subnode";
+	let child = A(node)(C("input"));
+	child.type = "text";
+	child.placeholder = "Wertname";
+	let select = A(node)(C("select"));
+	select.multiple = true;
+	attributeNames.forEach(attr => {
+		child = A(select)(C("option"));
+		child.value = codify(attr);
+		child.innerText = attr;
+	});
+	child = A(select)(C("option"));
+	child.value = "";
+	child.innerText = "XX";
+	// TODO limit number of attributes that can be selected.
+	return node;
+};
+
 const skillNode = (name, checked=false) => {
 	/*
 	<div class="tr">
@@ -96,6 +116,7 @@ const skillNode = (name, checked=false) => {
 
 const newSkillNode = () => {
 	let node = C("input");
+	node.class = "subnode";
 	node.type = "text";
 	node.placeholder = "Skillname";
 	return node;
@@ -154,6 +175,7 @@ const newCharacter = () => {
 	child = _(fakeTableNode("stats"));
 	A(child)(h2Node("Werte"));
 	// TODO stat nodes
+	_(newEntryButtonNode(child, (subnode) => slide50Node(subnode.firstChild.value, subnode.lastChild.value), newStatNode()));
 	child = _(fakeTableNode("skills"));
 	A(child)(h2Node("Andere Skills"));
 	// TODO skill nodes from template
