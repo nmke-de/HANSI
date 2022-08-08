@@ -94,7 +94,7 @@ const skillNode = (name, checked=false) => {
 	return node;
 };
 
-const itemNode = (name="", description="") => {
+const itemNode = (name="", count=0, description="") => {
 	// TODO define input-data names.
 	let node = C("div");
 	node.class = "tr";
@@ -102,7 +102,7 @@ const itemNode = (name="", description="") => {
 	child.class = "td";
 	child.type = "number";
 	child.min = 0;
-	child.value = 0;
+	child.value = count;
 	child.placeholder = "Anzahl";
 	child = A(node)(C("input"));
 	child.class = "td";
@@ -151,6 +151,7 @@ const newCharacter = () => {
 	child = _(fakeTableNode("inventory"));
 	A(child)(h2Node("Inventar"));
 	// TODO inventory nodes
+	_(newEntryButtonNode(child, itemNode()));
 	Q("sheet").appendChild(dialog);
 	dialog.show();
 };
