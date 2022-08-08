@@ -106,17 +106,17 @@ const newCharacter = () => {
 	let child = _(C("textarea"));
 	child.name = "backstory";
 	child.placeholder = "Backstory";
-	_(h2Node("Attributes"));
 	child = _(fakeTableNode("attributes"));
+	A(child)(h2Node("Attributes"));
 	attributeNames.forEach(attr => A(child)(slide50Node(attr)));
-	_(h2Node("Werte"));
 	child = _(fakeTableNode("stats"));
+	A(child)(h2Node("Werte"));
 	// TODO stat nodes
-	_(h2Node("Andere Skills"));
 	child = _(fakeTableNode("skills"));
+	A(child)(h2Node("Andere Skills"));
 	// TODO skill nodes
-	_(h2Node("Inventar"));
 	child = _(fakeTableNode("inventory"));
+	A(child)(h2Node("Inventar"));
 	// TODO inventory nodes
 	Q("sheet").appendChild(dialog);
 	dialog.show();
