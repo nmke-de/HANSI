@@ -223,11 +223,9 @@ const newCharacter = () => {
 	attributeNames.forEach(attr => A(child)(slide50Node(attr)));
 	child = _(fakeTableNode("stats", ftprefix));
 	A(child)(h2Node("Werte"));
-	// TODO stat nodes from template
 	A(child)(entryAdderNode(child, (subnode) => slide50Node(subnode.firstChild.value, subnode.lastChild.value), statAdderNode()));
 	child = _(fakeTableNode("skills", ftprefix));
 	A(child)(h2Node("Andere Skills"));
-	// TODO skill nodes from template
 	A(child)(entryAdderNode(child, (subnode) => skillNode(subnode.value), skillAdderNode()));
 	child = _(fakeTableNode("inventory", ftprefix));
 	A(child)(h2Node("Inventar"));
