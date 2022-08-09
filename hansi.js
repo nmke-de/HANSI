@@ -11,7 +11,12 @@ let cache = {
 
 window.addEventListener("load", () => {
 	// Fetch templates
-	templates.forEach(filename => {
+	[
+		// TODO Currently hardcoded, pls change
+		"empty.json",
+		"new-east.json",
+		"obstwatch.json"
+	].forEach(filename => {
 		fetch("templates/"+filename).then(response => response.json()).then(text => cache.templates.push(text));
 	});
 	Q("hitpoints").addEventListener("input", updateHitpoints);
@@ -25,19 +30,12 @@ const codify = (input) => {
 	return input.toLowerCase().replace(' ', '_').replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss");
 };
 
-// TODO Currently hardcoded, pls change
-let templates = [
-	"empty.json",
-	"new-east.json",
-	"obstwatch.json"
-];
-
 const templateChooserNode = () => {
 	let node = C("select");
-	templates.forEach(filename => {
+	cache.templates.forEach((template, i) => {
 		let child = A(node)(C("option"));
-		child.value = filename;
-		child.innerText = filename;
+		child.value = i;
+		child.innerText = template.template;
 	});
 	return node;
 };
