@@ -123,6 +123,10 @@ const newStatNode = () => {
 	return node;
 };
 
+const appendStatNodesFromTemplate = () => {
+	; // TODO implement
+};
+
 const skillNode = (name, checked = false) => {
 	/*
 	<div class="tr">
@@ -184,7 +188,7 @@ const newEntryButtonNode = (faketable, nodegen, subnode = null) => {
 	child.class = "append-button";
 	child.innerText = "+";
 	child.type = "button";
-	child.onclick = () => A(faketable)(nodegen(subnode ? subnode : ""));
+	child.onclick = () => faketable.insertBefore(nodegen(subnode ? subnode : ""), faketable.lastChild);
 	return node;
 };
 
@@ -207,14 +211,14 @@ const newCharacter = () => {
 	child = _(fakeTableNode("stats"));
 	A(child)(h2Node("Werte"));
 	// TODO stat nodes from template
-	_(newEntryButtonNode(child, (subnode) => slide50Node(subnode.firstChild.value, subnode.lastChild.value), newStatNode()));
+	A(child)(newEntryButtonNode(child, (subnode) => slide50Node(subnode.firstChild.value, subnode.lastChild.value), newStatNode()));
 	child = _(fakeTableNode("skills"));
 	A(child)(h2Node("Andere Skills"));
 	// TODO skill nodes from template
-	_(newEntryButtonNode(child, (subnode) => skillNode(subnode.value), newSkillNode()));
+	A(child)(newEntryButtonNode(child, (subnode) => skillNode(subnode.value), newSkillNode()));
 	child = _(fakeTableNode("inventory"));
 	A(child)(h2Node("Inventar"));
-	_(newEntryButtonNode(child, itemNode));
+	A(child)(newEntryButtonNode(child, itemNode));
 	Q("sheet").appendChild(dialog);
 	dialog.show();
 };
