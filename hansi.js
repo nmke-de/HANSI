@@ -123,6 +123,7 @@ const skillNode = (name, checked=false) => {
 	child.class = "td";
 	child.type = "checkbox";
 	child.name = codify(name);
+	child.id = codify(name);
 	child.checked = checked; // Not to myself: Code might be faulty
 	child = A(node)(C("label"));
 	child.class = "td";
