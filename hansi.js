@@ -126,7 +126,7 @@ const newStatNode = () => {
 const appendStatNodesFromTemplate = (faketable, template) => {
 	let refpoint = faketable.lastChild;
 	while (!refpoint.previousSibling.isSameNode(faketable.firstChild)) faketable.removeChild(refpoint.previousSibling);
-	template.stats.forEach(stat => faketable.insertBefore(slide50Node(stat.name, stat.base1), refpoint));
+	template.stats.forEach(stat => faketable.insertBefore(slide50Node(stat.name, stat.base2 ? stat.base1 + " " + stat.base2 : stat.base1), refpoint));
 };
 
 const skillNode = (name, checked = false) => {
