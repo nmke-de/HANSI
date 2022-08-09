@@ -15,6 +15,18 @@ const codify = (input) => {
 	return input.toLowerCase().replace(' ', '_').replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss");
 };
 
+// TODO CUrrently hardcoded, pls change
+let templates = [
+	"empty.json",
+	"new-east.json",
+	"obstwatch.json"
+];
+
+const templateChooserNode = () => {
+	let node = C("select");
+	;
+};
+
 const nameNode = (name=undefined) => {
 	let node = C("h1");
 	node.class = "name";
