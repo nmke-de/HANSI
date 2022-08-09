@@ -25,7 +25,7 @@ let templates = [
 const templateChooserNode = () => {
 	let node = C("select");
 	templates.forEach(filename => {
-		let child = C("option");
+		let child = A(node)(C("option"));
 		child.value = filename;
 		child.innerText = filename;
 	});
