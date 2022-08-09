@@ -32,10 +32,11 @@ const codify = (input) => {
 
 const templateChooserNode = () => {
 	let node = C("select");
+	node.id = "template-chooser";
 	cache.templates.forEach((template, i) => {
 		let child = A(node)(C("option"));
 		child.value = i;
-		child.innerText = template.template;
+		child.innerText = template.template + " template";
 	});
 	return node;
 };
@@ -186,6 +187,7 @@ const newEntryButtonNode = (faketable, nodegen, subnode=null) => {
 const newCharacter = () => {
 	// TODO do more than a demo here!
 	let dialog = document.createElement("dialog");
+	A(dialog)(templateChooserNode());
 	let form = A(dialog)(C("form"));
 	form.method = "dialog";
 	let _ = A(form);
