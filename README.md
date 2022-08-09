@@ -1,6 +1,6 @@
 # HANSI
 
-**HANSI** is a HANS character sheet for the **I**nternet. For a similar project written in C, look [here](https://github.com/nmke-de/HANS-CharacterSheet).
+**HANSI** is a HANS character sheet for the **I**nternet. For a similar project written in C, look [here](https://github.com/nmke-de/HANS-CharacterSheet). For a demo, take a look [here](https://nmke-de.github.io/HANSI).
 
 ### What is HANS?
 
