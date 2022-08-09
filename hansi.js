@@ -103,7 +103,7 @@ const slide50Node = (name, attribute = undefined, value = 0) => {
 	return node;
 };
 
-const newStatNode = () => {
+const statAdderNode = () => {
 	let node = C("div");
 	node.class = "subnode";
 	let child = A(node)(C("input"));
@@ -151,7 +151,7 @@ const skillNode = (name, checked = false) => {
 	return node;
 };
 
-const newSkillNode = () => {
+const skillAdderNode = () => {
 	let node = C("input");
 	node.class = "subnode";
 	node.type = "text";
@@ -181,7 +181,7 @@ const itemNode = (name = "", count = 0, description = "") => {
 	return node;
 };
 
-const newEntryButtonNode = (faketable, nodegen, subnode = null) => {
+const entryAdderNode = (faketable, nodegen, subnode = null) => {
 	// TODO give more options
 	let node = C("div");
 	node.class = "append-button-div";
@@ -213,14 +213,14 @@ const newCharacter = () => {
 	child = _(fakeTableNode("stats"));
 	A(child)(h2Node("Werte"));
 	// TODO stat nodes from template
-	A(child)(newEntryButtonNode(child, (subnode) => slide50Node(subnode.firstChild.value, subnode.lastChild.value), newStatNode()));
+	A(child)(entryAdderNode(child, (subnode) => slide50Node(subnode.firstChild.value, subnode.lastChild.value), statAdderNode()));
 	child = _(fakeTableNode("skills"));
 	A(child)(h2Node("Andere Skills"));
 	// TODO skill nodes from template
-	A(child)(newEntryButtonNode(child, (subnode) => skillNode(subnode.value), newSkillNode()));
+	A(child)(entryAdderNode(child, (subnode) => skillNode(subnode.value), skillAdderNode()));
 	child = _(fakeTableNode("inventory"));
 	A(child)(h2Node("Inventar"));
-	A(child)(newEntryButtonNode(child, itemNode));
+	A(child)(entryAdderNode(child, itemNode));
 	A(Q("sheet"))(dialog);
 	dialog.show();
 };
