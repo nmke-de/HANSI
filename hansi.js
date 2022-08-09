@@ -124,7 +124,7 @@ const skillNode = (name, checked=false) => {
 	child.type = "checkbox";
 	child.name = codify(name);
 	child.id = codify(name);
-	child.checked = checked; // Not to myself: Code might be faulty
+	child.checked = checked; // Note to myself: Code might be faulty
 	child = A(node)(C("label"));
 	child.class = "td";
 	child.for = codify(name);
