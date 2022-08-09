@@ -21,7 +21,7 @@ window.addEventListener("load", () => {
 		"new-east.json",
 		"obstwatch.json"
 	].forEach(filename => {
-		fetch("templates/"+filename).then(response => response.json()).then(text => cache.templates.push(text));
+		fetch("templates/" + filename).then(response => response.json()).then(text => cache.templates.push(text));
 	});
 	Q("hitpoints").addEventListener("input", updateHitpoints);
 });
@@ -45,7 +45,7 @@ const templateChooserNode = () => {
 	return node;
 };
 
-const nameNode = (name=undefined) => {
+const nameNode = (name = undefined) => {
 	let node = C("h1");
 	node.class = "name";
 	if (name) node.innerText = name;
@@ -79,14 +79,14 @@ const attributeNames = [
 	"Glück"
 ];
 
-const slide50Node = (name, attribute=undefined, value=0) => {
+const slide50Node = (name, attribute = undefined, value = 0) => {
 	/*
 	<div class="tr $(codify attribute)">
 		<label class="td" for="$(codify name)">$name</label>
 		<input class="td" type="range" min="0" max="50" name="$(codify name)" value="$value">
 	</div>
 	*/
-	if(!attribute) attribute = name;
+	if (!attribute) attribute = name;
 	let node = C("div");
 	node.class = "tr " + codify(attribute);
 	let child = A(node)(C("label"));
@@ -123,7 +123,7 @@ const newStatNode = () => {
 	return node;
 };
 
-const skillNode = (name, checked=false) => {
+const skillNode = (name, checked = false) => {
 	/*
 	<div class="tr">
 		<input class="td" type="checkbox" name="$(codify name)" checked?>
@@ -153,7 +153,7 @@ const newSkillNode = () => {
 	return node;
 };
 
-const itemNode = (name="", count=0, description="") => {
+const itemNode = (name = "", count = 0, description = "") => {
 	// TODO define input-data names.
 	let node = C("div");
 	node.class = "tr";
@@ -175,7 +175,7 @@ const itemNode = (name="", count=0, description="") => {
 	return node;
 };
 
-const newEntryButtonNode = (faketable, nodegen, subnode=null) => {
+const newEntryButtonNode = (faketable, nodegen, subnode = null) => {
 	// TODO give more options
 	let node = C("div");
 	node.class = "append-button-div";
@@ -184,7 +184,7 @@ const newEntryButtonNode = (faketable, nodegen, subnode=null) => {
 	child.class = "append-button";
 	child.innerText = "+";
 	child.type = "button";
-	child.onclick = () => A(faketable)(nodegen(subnode?subnode:""));
+	child.onclick = () => A(faketable)(nodegen(subnode ? subnode : ""));
 	return node;
 };
 
@@ -195,7 +195,7 @@ const newCharacter = () => {
 	let form = A(dialog)(C("form"));
 	form.method = "dialog";
 	let _ = A(form);
-	
+
 	_(nameNode());
 	_(h2Node("Backstory"));
 	let child = _(C("textarea"));
