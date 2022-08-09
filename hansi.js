@@ -67,6 +67,13 @@ const h2Node = (text) => {
 	return node;
 };
 
+const textareaNode = (name, placeholder) => {
+	let node = C("textarea");
+	node.name = name;
+	node.placeholder = placeholder;
+	return node;
+};
+
 const fakeTableNode = (id, prefix = "") => {
 	let node = C("div");
 	node.class = "table " + id;
@@ -214,12 +221,11 @@ const newCharacter = () => {
 	let _ = A(form);
 
 	_(nameNode());
-	_(h2Node("Backstory"));
-	let child = _(C("textarea"));
-	child.name = "backstory";
-	child.placeholder = "Backstory";
+	let child = _(C("div"));
+	A(child)(h2Node("Backstory"));
+	A(child)(textareaNode("backstory", "Backstory"));
 	child = _(fakeTableNode("attributes", ftprefix));
-	A(child)(h2Node("Attributes"));
+	A(child)(h2Node("Attribute"));
 	attributeNames.forEach(attr => A(child)(slide50Node(attr)));
 	child = _(fakeTableNode("stats", ftprefix));
 	A(child)(h2Node("Werte"));
