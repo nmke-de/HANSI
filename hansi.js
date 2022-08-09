@@ -19,8 +19,8 @@ window.addEventListener("load", () => {
 		"empty.json",
 		"new-east.json",
 		"obstwatch.json"
-	].forEach(filename => {
-		fetch("templates/" + filename).then(response => response.json()).then(text => cache.templates.push(text));
+	].forEach((filename, i) => {
+		fetch("templates/" + filename).then(response => response.json()).then(text => cache.templates[i] = text);
 	});
 	Q("hitpoints").addEventListener("input", updateHitpoints);
 });
