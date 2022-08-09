@@ -8,7 +8,6 @@ let cache = {
 	sheets: [],
 	templates: [],
 	selected: {
-		template: 0,
 		sheet: 0
 	}
 };
@@ -42,6 +41,9 @@ const templateChooserNode = () => {
 		child.value = i;
 		child.innerText = template.template + " template";
 	});
+	node.onclick = (ev) => {
+		appendTemplateStats(Q("cc-stats"), cache.templates[ev.target.value]);
+	};
 	return node;
 };
 
@@ -64,9 +66,10 @@ const h2Node = (text) => {
 	return node;
 };
 
-const fakeTableNode = (id) => {
+const fakeTableNode = (id, prefix = "") => {
 	let node = C("div");
 	node.class = "table " + id;
+	node.id = prefix + id;
 	return node;
 };
 
@@ -200,6 +203,7 @@ const newCharacter = () => {
 	A(dialog)(templateChooserNode());
 	let form = A(dialog)(C("form"));
 	form.method = "dialog";
+	let ftprefix = "cc-"
 	let _ = A(form);
 
 	_(nameNode());
@@ -207,18 +211,18 @@ const newCharacter = () => {
 	let child = _(C("textarea"));
 	child.name = "backstory";
 	child.placeholder = "Backstory";
-	child = _(fakeTableNode("attributes"));
+	child = _(fakeTableNode("attributes", ftprefix));
 	A(child)(h2Node("Attributes"));
 	attributeNames.forEach(attr => A(child)(slide50Node(attr)));
-	child = _(fakeTableNode("stats"));
+	child = _(fakeTableNode("stats", ftprefix));
 	A(child)(h2Node("Werte"));
 	// TODO stat nodes from template
 	A(child)(entryAdderNode(child, (subnode) => slide50Node(subnode.firstChild.value, subnode.lastChild.value), statAdderNode()));
-	child = _(fakeTableNode("skills"));
+	child = _(fakeTableNode("skills", ftprefix));
 	A(child)(h2Node("Andere Skills"));
 	// TODO skill nodes from template
 	A(child)(entryAdderNode(child, (subnode) => skillNode(subnode.value), skillAdderNode()));
-	child = _(fakeTableNode("inventory"));
+	child = _(fakeTableNode("inventory", ftprefix));
 	A(child)(h2Node("Inventar"));
 	A(child)(entryAdderNode(child, itemNode));
 	A(Q("sheet"))(dialog);
