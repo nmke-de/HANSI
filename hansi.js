@@ -214,18 +214,27 @@ const entryAdderNode = (faketable, nodegen, subnode = null) => {
 const characterSubmitterNode = () => {
 	let node = C("div");
 	node.class = "cc-submit";
+	const close = (ev) => {
+		if(ev.target.value == "confirm") {
+			// TODO store new character
+		}
+		Q("sheet").removeChild(Q("dialog"));
+	};
 	let child = A(node)(C("button"));
 	child.value = "cancel";
 	child.innerText = "Abbrechen";
+	child.onclick = close;
 	child = A(node)(C("button"));
 	child.value = "confirm";
 	child.innerText = "Erstellen"
+	child.onclick = close;
 	return node;
 };
 
 const newCharacter = () => {
 	// TODO do more than a demo here!
 	let dialog = C("dialog");
+	dialog.id = "dialog";
 	A(dialog)(templateChooserNode());
 	let form = A(dialog)(C("form"));
 	form.method = "dialog";
