@@ -45,7 +45,17 @@ textarea {
 	resize: vertical;
 }
  /* changes textarea resizing from "both" (UA default) to vertical only */
- 
+
+.table {
+	display: table;
+}
+.tr {
+	display: table-row;
+}
+.td {
+	display: table-cell;
+}
+
 table { border-collapse: collapse; }
 td {
 	padding: .5rem;

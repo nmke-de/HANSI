@@ -50,7 +50,7 @@ const templateChooserNode = () => {
 
 const nameNode = (name = undefined) => {
 	let node = C("h1");
-	node.class = "name";
+	node.className = "name";
 	if (name) node.innerText = name;
 	else {
 		let child = A(node)(C("input"));
@@ -76,7 +76,7 @@ const textareaNode = (name, placeholder) => {
 
 const fakeTableNode = (id, prefix = "") => {
 	let node = C("div");
-	node.class = "table " + id;
+	node.className = "table " + id;
 	node.id = prefix + id;
 	return node;
 };
@@ -99,13 +99,13 @@ const slide50Node = (name, attribute = undefined, value = 0) => {
 	*/
 	if (!attribute) attribute = name;
 	let node = C("div");
-	node.class = "tr " + codify(attribute);
+	node.className = "tr " + codify(attribute);
 	let child = A(node)(C("label"));
-	child.class = "td";
+	child.className = "td";
 	child.for = codify(name);
 	child.innerText = name;
 	child = A(node)(C("input"));
-	child.class = "td";
+	child.className = "td";
 	child.name = codify(name);
 	child.type = "range";
 	child.min = 0;
@@ -116,7 +116,7 @@ const slide50Node = (name, attribute = undefined, value = 0) => {
 
 const statAdderNode = () => {
 	let node = C("div");
-	node.class = "subnode";
+	node.className = "subnode";
 	let child = A(node)(C("input"));
 	child.type = "text";
 	child.placeholder = "Wertname";
@@ -148,22 +148,22 @@ const skillNode = (name, checked = false) => {
 	</div>
 	*/
 	let node = C("label");
-	node.class = "tr";
+	node.className = "tr";
 	let child = A(node)(C("input"));
-	child.class = "td";
+	child.className = "td";
 	child.type = "checkbox";
 	child.name = codify(name);
 	child.id = codify(name);
 	child.checked = checked; // Note to myself: Code might be faulty
 	child = A(node)(C("span"));
-	child.class = "td";
+	child.className = "td";
 	child.innerText = name;
 	return node;
 };
 
 const skillAdderNode = () => {
 	let node = C("input");
-	node.class = "subnode";
+	node.className = "subnode";
 	node.type = "text";
 	node.placeholder = "Skillname";
 	return node;
@@ -178,20 +178,20 @@ const appendTemplateSkills = (faketable, template) => {
 const itemNode = (name = "", count = 0, description = "") => {
 	// TODO define input-data names.
 	let node = C("div");
-	node.class = "tr";
+	node.className = "tr";
 	let child = A(node)(C("input"));
-	child.class = "td";
+	child.className = "td";
 	child.type = "number";
 	child.min = 0;
 	child.value = count;
 	child.placeholder = "Anzahl";
 	child = A(node)(C("input"));
-	child.class = "td";
+	child.className = "td";
 	child.type = "text";
 	child.value = name;
 	child.placeholder = "Gegenstandsname";
 	child = A(node)(C("textarea"));
-	child.class = "td";
+	child.className = "td";
 	child.value = description;
 	child.placeholder = "Beschreibung";
 	return node;
@@ -200,10 +200,10 @@ const itemNode = (name = "", count = 0, description = "") => {
 const entryAdderNode = (faketable, nodegen, subnode = null) => {
 	// TODO give more options
 	let node = C("div");
-	node.class = "append-button-div";
+	node.className = "append-button-div";
 	if (subnode) A(node)(subnode);
 	let child = A(node)(C("button"));
-	child.class = "append-button";
+	child.className = "append-button";
 	child.innerText = "+";
 	child.type = "button";
 	child.onclick = () => faketable.insertBefore(nodegen(subnode ? subnode : ""), faketable.lastChild);
@@ -212,7 +212,7 @@ const entryAdderNode = (faketable, nodegen, subnode = null) => {
 
 const characterSubmitterNode = () => {
 	let node = C("div");
-	node.class = "cc-submit";
+	node.className = "cc-submit";
 	const close = (ev) => {
 		if(ev.target.value == "confirm") {
 			// TODO store new character
