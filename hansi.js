@@ -3,7 +3,17 @@ const Q = (id) => document.getElementById(id);
 const C = (tagname) => document.createElement(tagname);
 const A = (parent) => (child) => parent.appendChild(child);
 
+// Global cache. TODO store this in WebStorage or similar.
+let cache = {
+	sheets : [],
+	templates : []
+};
+
 window.addEventListener("load", () => {
+	// Fetch templates
+	templates.forEach(filename => {
+		fetch("templates/"+filename).then(response => response.json()).then(text => cache.templates.push(text));
+	});
 	Q("hitpoints").addEventListener("input", updateHitpoints);
 });
 
@@ -15,7 +25,7 @@ const codify = (input) => {
 	return input.toLowerCase().replace(' ', '_').replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss");
 };
 
-// TODO CUrrently hardcoded, pls change
+// TODO Currently hardcoded, pls change
 let templates = [
 	"empty.json",
 	"new-east.json",
