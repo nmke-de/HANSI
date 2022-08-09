@@ -1,0 +1,116 @@
+{
+	"template": "Costa Rica Obstwatch",
+	"attribute_points": 175,
+	"stat_points": 400,
+	"stats": [
+		{
+			"name": "Kultur",
+			"base1": "Bildung"
+		},
+		{
+			"name": "Manövrieren",
+			"base1": "Bildung"
+		},
+		{
+			"name": "Medizin",
+			"base1": "Bildung"
+		},
+		{
+			"name": "Naturwissenschaft",
+			"base1": "Bildung"
+		},
+		{
+			"name": "Technik",
+			"base1": "Bildung"
+		},
+		{
+			"name": "Wildnis",
+			"base1": "Bildung"
+		},
+		{
+			"name": "Sympathie",
+			"base1": "Charisma"
+		},
+		{
+			"name": "Täuschen",
+			"base1": "Charisma"
+		},
+		{
+			"name": "Überreden",
+			"base1": "Charisma"
+		},
+		{
+			"name": "Überzeugen",
+			"base1": "Charisma"
+		},
+		{
+			"name": "Einschüchtern",
+			"base1": "Charisma",
+			"base2": "Stärke"
+		},
+		{
+			"name": "Akrobatik",
+			"base1": "Geschick"
+		},
+		{
+			"name": "Balance",
+			"base1": "Geschick"
+		},
+		{
+			"name": "Fingerfertigkeit",
+			"base1": "Geschick"
+		},
+		{
+			"name": "Heimlichkeit",
+			"base1": "Geschick"
+		},
+		{
+			"name": "Klettern",
+			"base1": "Geschick"
+		},
+		{
+			"name": "Schießen",
+			"base1": "Geschick"
+		},
+		{
+			"name": "Bewaffneter Nahkampf",
+			"base1": "Geschick",
+			"base2": "Stärke"
+		},
+		{
+			"name": "Werfen",
+			"base1": "Geschick",
+			"base2": "Stärke"
+		},
+		{
+			"name": "Aktive Wahrnehmung",
+			"base1": "Intelligenz"
+		},
+		{
+			"name": "Bibliotheksnutzung",
+			"base1": "Intelligenz"
+		},
+		{
+			"name": "Gedächtnis",
+			"base1": "Intelligenz"
+		},
+		{
+			"name": "Passive Wahrnehmung",
+			"base1": "Intelligenz"
+		},
+		{
+			"name": "Menschenkenntnis",
+			"base1": "Intelligenz",
+			"base2": "Charisma"
+		},
+		{
+			"name": "Handwerk",
+			"base1": "Stärke"
+		},
+		{
+			"name": "Unbewaffneter Nahkampf",
+			"base1": "Stärke"
+		}
+	],
+	"skills": []
+}
