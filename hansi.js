@@ -147,7 +147,7 @@ const skillNode = (name, checked = false) => {
 		<label class="td" for="$(codify name)">$name</label>
 	</div>
 	*/
-	let node = C("div");
+	let node = C("label");
 	node.class = "tr";
 	let child = A(node)(C("input"));
 	child.class = "td";
@@ -155,9 +155,8 @@ const skillNode = (name, checked = false) => {
 	child.name = codify(name);
 	child.id = codify(name);
 	child.checked = checked; // Note to myself: Code might be faulty
-	child = A(node)(C("label"));
+	child = A(node)(C("span"));
 	child.class = "td";
-	child.for = codify(name);
 	child.innerText = name;
 	return node;
 };
