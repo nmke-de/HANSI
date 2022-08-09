@@ -123,7 +123,7 @@ const statAdderNode = () => {
 	return node;
 };
 
-const appendStatNodesFromTemplate = (faketable, template) => {
+const appendTemplateStats = (faketable, template) => {
 	let refpoint = faketable.lastChild;
 	while (!refpoint.previousSibling.isSameNode(faketable.firstChild)) faketable.removeChild(refpoint.previousSibling);
 	template.stats.forEach(stat => faketable.insertBefore(slide50Node(stat.name, stat.base2 ? stat.base1 + " " + stat.base2 : stat.base1), refpoint));
