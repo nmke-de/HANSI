@@ -123,8 +123,10 @@ const newStatNode = () => {
 	return node;
 };
 
-const appendStatNodesFromTemplate = () => {
-	; // TODO implement
+const appendStatNodesFromTemplate = (faketable, template) => {
+	let refpoint = faketable.lastChild;
+	while (!refpoint.previousSibling.isSameNode(faketable.firstChild)) faketable.removeChild(refpoint.previousSibling);
+	template.stats.forEach(stat => faketable.insertBefore(slide50Node(stat.name, stat.base1), refpoint));
 };
 
 const skillNode = (name, checked = false) => {
@@ -219,6 +221,6 @@ const newCharacter = () => {
 	child = _(fakeTableNode("inventory"));
 	A(child)(h2Node("Inventar"));
 	A(child)(newEntryButtonNode(child, itemNode));
-	Q("sheet").appendChild(dialog);
+	A(Q("sheet"))(dialog);
 	dialog.show();
 };
