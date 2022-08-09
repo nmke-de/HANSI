@@ -5,8 +5,12 @@ const A = (parent) => (child) => parent.appendChild(child);
 
 // Global cache. TODO store this in WebStorage or similar.
 let cache = {
-	sheets : [],
-	templates : []
+	sheets: [],
+	templates: [],
+	selected: {
+		template: 0,
+		sheet: 0
+	}
 };
 
 window.addEventListener("load", () => {
