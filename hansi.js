@@ -211,9 +211,21 @@ const entryAdderNode = (faketable, nodegen, subnode = null) => {
 	return node;
 };
 
+const characterSubmitterNode = () => {
+	let node = C("div");
+	node.class = "cc-submit";
+	let child = A(node)(C("button"));
+	child.value = "cancel";
+	child.innerText = "Abbrechen";
+	child = A(node)(C("button"));
+	child.value = "confirm";
+	child.innerText = "Erstellen"
+	return node;
+};
+
 const newCharacter = () => {
 	// TODO do more than a demo here!
-	let dialog = document.createElement("dialog");
+	let dialog = C("dialog");
 	A(dialog)(templateChooserNode());
 	let form = A(dialog)(C("form"));
 	form.method = "dialog";
@@ -236,6 +248,7 @@ const newCharacter = () => {
 	child = _(fakeTableNode("inventory", ftprefix));
 	A(child)(h2Node("Inventar"));
 	A(child)(entryAdderNode(child, itemNode));
+	_(characterSubmitterNode());
 	A(Q("sheet"))(dialog);
 	dialog.show();
 };
