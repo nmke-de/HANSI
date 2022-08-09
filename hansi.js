@@ -43,6 +43,7 @@ const templateChooserNode = () => {
 	});
 	node.onclick = (ev) => {
 		appendTemplateStats(Q("cc-stats"), cache.templates[ev.target.value]);
+		appendTemplateSkills(Q("cc-skills"), cache.templates[ev.target.value]);
 	};
 	return node;
 };
@@ -160,6 +161,12 @@ const skillAdderNode = () => {
 	node.type = "text";
 	node.placeholder = "Skillname";
 	return node;
+};
+
+const appendTemplateSkills = (faketable, template) => {
+	let refpoint = faketable.lastChild;
+	while (!refpoint.previousSibling.isSameNode(faketable.firstChild)) faketable.removeChild(refpoint.previousSibling);
+	template.skills.forEach(skill => faketable.insertBefore(skillNode(skill), refpoint));
 };
 
 const itemNode = (name = "", count = 0, description = "") => {
