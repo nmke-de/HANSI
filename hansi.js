@@ -149,15 +149,15 @@ const skillNode = (name, checked = false) => {
 	*/
 	let node = C("label");
 	node.className = "tr";
-	let child = A(node)(C("input"));
+	let child = A(node)(C("span"));
+	child.className = "td";
+	child.innerText = name;
+	child = A(node)(C("input"));
 	child.className = "td";
 	child.type = "checkbox";
 	child.name = codify(name);
 	child.id = codify(name);
 	child.checked = checked; // Note to myself: Code might be faulty
-	child = A(node)(C("span"));
-	child.className = "td";
-	child.innerText = name;
 	return node;
 };
 
@@ -200,10 +200,10 @@ const itemNode = (name = "", count = 0, description = "") => {
 const entryAdderNode = (faketable, nodegen, subnode = null) => {
 	// TODO give more options
 	let node = C("div");
-	node.className = "append-button-div";
-	if (subnode) A(node)(subnode);
+	node.className = "append-button-div tr";
+	if (subnode) A(node)(subnode).className = "td";
 	let child = A(node)(C("button"));
-	child.className = "append-button";
+	child.className = "append-button td";
 	child.innerText = "+";
 	child.type = "button";
 	child.onclick = () => faketable.insertBefore(nodegen(subnode ? subnode : ""), faketable.lastChild);
