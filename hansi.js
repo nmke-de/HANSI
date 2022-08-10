@@ -12,6 +12,9 @@ let cache = {
 	}
 };
 
+
+const ftprefix = "cc-";
+
 window.addEventListener("load", () => {
 	// Fetch templates
 	[
@@ -54,6 +57,7 @@ const nameNode = (name = undefined) => {
 	if (name) node.innerText = name;
 	else {
 		let child = A(node)(C("input"));
+		child.id = ftprefix + "name";
 		child.type = "text";
 		child.name = "name";
 		child.placeholder = "Name";
@@ -70,6 +74,7 @@ const h2Node = (text) => {
 const textareaNode = (name, placeholder) => {
 	let node = C("textarea");
 	node.name = name;
+	node.id = name;
 	node.placeholder = placeholder;
 	return node;
 };
@@ -107,6 +112,7 @@ const slide50Node = (name, attribute = undefined, value = 0) => {
 	child = A(node)(C("input"));
 	child.className = "td";
 	child.name = codify(name);
+	child.id = ftprefix + codify(name);
 	child.type = "range";
 	child.min = 0;
 	child.max = 50;
@@ -212,10 +218,33 @@ const entryAdderNode = (faketable, nodegen, subnode = null) => {
 
 const characterSubmitterNode = () => {
 	let node = C("div");
-	node.className = "cc-submit";
+	node.className = ftprefix + "submit";
 	const close = (ev) => {
 		if(ev.target.value == "confirm") {
-			// TODO store new character
+			let sheet = {
+				name: Q(ftprefix + "name").value,
+				backstory: Q(ftprefix + "backstory").value,
+				attributes: [],
+				stats: [],
+				skills: [],
+				inventory: [],
+				notes: ""
+				// TODO store data here, also save default values
+			};
+			attributeNames.forEach(attr => sheet.attributes.push(parseInt(Q(ftprefix + codify(attr)).value)));
+			let refnode = Q(ftprefix + "stats");
+			let inode;
+			for(inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sheet.stats.push({
+				name: inode.firstChild.innerText,
+				value: parseInt(inode.lastChild.value)
+				// TODO add base stats
+			});
+			refnode = Q(ftprefix + "skills");
+			for(inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sheet.skills.push({
+				name: inode.firstChild.innerText,
+				value: inode.lastChild.checked
+			});
+			cache.sheets.push(sheet);
 		}
 		Q("sheet").removeChild(Q("dialog"));
 	};
@@ -237,13 +266,12 @@ const newCharacter = () => {
 	A(dialog)(templateChooserNode());
 	let form = A(dialog)(C("form"));
 	form.method = "dialog";
-	let ftprefix = "cc-"
 	let _ = A(form);
 
 	_(nameNode());
 	let child = _(C("div"));
 	A(child)(h2Node("Backstory"));
-	A(child)(textareaNode("backstory", "Backstory"));
+	A(child)(textareaNode(ftprefix + "backstory", "Backstory"));
 	child = _(fakeTableNode("attributes", ftprefix));
 	A(child)(h2Node("Attribute"));
 	attributeNames.forEach(attr => A(child)(slide50Node(attr)));
