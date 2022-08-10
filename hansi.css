@@ -48,12 +48,17 @@ textarea {
 
 .table {
 	display: table;
+	width: 100%;
 }
 .tr {
 	display: table-row;
 }
 .td {
 	display: table-cell;
+}
+
+.table h2 {
+	display: table-caption;
 }
 
 table { border-collapse: collapse; }
