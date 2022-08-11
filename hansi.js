@@ -224,6 +224,7 @@ const characterSubmitterNode = () => {
 			let sheet = {
 				name: Q(ftprefix + "name").value,
 				backstory: Q(ftprefix + "backstory").value,
+				hitpoints: 20,
 				attributes: [],
 				stats: [],
 				skills: [],
