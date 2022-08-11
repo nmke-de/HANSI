@@ -181,7 +181,7 @@ const appendTemplateSkills = (faketable, template) => {
 	template.skills.forEach(skill => faketable.insertBefore(skillNode(skill), refpoint));
 };
 
-const itemNode = (name = "", count = 0, description = "") => {
+const itemNode = (name = "", count = 1, description = "") => {
 	// TODO define input-data names.
 	let node = C("div");
 	node.className = "tr";
