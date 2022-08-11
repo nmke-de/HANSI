@@ -244,6 +244,12 @@ const characterSubmitterNode = () => {
 				name: inode.firstChild.innerText,
 				value: inode.lastChild.checked
 			});
+			refnode = Q(ftprefix + "inventory");
+			for(inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sheet.inventory.push({
+				count: parseInt(inode.firstChild.value),
+				name: inode.firstChild.nextSibling.value,
+				description: inode.lastChild.value
+			});
 			cache.sheets.push(sheet);
 		}
 		Q("sheet").removeChild(Q("dialog"));
