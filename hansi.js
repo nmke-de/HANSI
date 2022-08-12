@@ -72,11 +72,12 @@ const h2Node = (text) => {
 	return node;
 };
 
-const textareaNode = (name, placeholder) => {
+const textareaNode = (name, placeholder, value = "") => {
 	let node = C("textarea");
 	node.name = name;
 	node.id = name;
 	node.placeholder = placeholder;
+	node.value = value;
 	return node;
 };
 
@@ -254,7 +255,7 @@ const characterSubmitterNode = () => {
 			});
 			cache.sheets.push(sheet);
 			cache.selected.sheet = cache.sheets.length - 1;
-			//fullUpdateSheet();
+			fullUpdateSheet();
 		}
 		//Q("sheet").removeChild(Q("dialog"));
 	};
@@ -301,6 +302,7 @@ const newCharacter = () => {
 
 const download = () => {
 	let node = C("a");
+	if (!cache.sheets[cache.selected.sheet]) return;
 	node.href = "data:text/json;charset=utf-8," + encodeURI(JSON.stringify(cache.sheets[cache.selected.sheet]));
 	node.download = codify(cache.sheets[cache.selected.sheet].name) + ".json";
 	node.click();
@@ -311,5 +313,15 @@ const fullUpdateSheet = () => {
 	if (!character) return;
 	let sheet = Q("sheet");
 	sheet.innerHTML = "";
-	;
+	const _ = A(sheet);
+
+	_(nameNode(character.name));
+	let child = _(C("div"));
+	child.id = "backstory";
+	A(child)(h2Node("Backstory"));
+	child.innerHTML += "<p>" + character.backstory.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
+	child = _(fakeTableNode("attributes"));
+	A(child)(h2Node("Attribute"));
+	attributeNames.forEach((attr, index) => A(child)(slide50Node(attr, attr, character.attributes[index])));
+
 }
