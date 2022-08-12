@@ -21,7 +21,8 @@ window.addEventListener("load", () => {
 		// TODO Currently hardcoded, pls change
 		"empty.json",
 		"new-east.json",
-		"obstwatch.json"
+		"obstwatch.json",
+		"GenreUndefined.json"
 	].forEach((filename, i) => {
 		fetch("templates/" + filename).then(response => response.json()).then(text => cache.templates[i] = text);
 	});
