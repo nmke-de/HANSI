@@ -33,7 +33,7 @@ const updateHitpoints = (ev) => {
 };
 
 const codify = (input) => {
-	return input.toLowerCase().replace(' ', '_').replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss");
+	return input.toLowerCase().replace(/ /g, '_').replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss");
 };
 
 const templateChooserNode = () => {
