@@ -126,3 +126,10 @@ sub, sup {
 #notes {
     resize: none
 }
+
+nav {
+	position: fixed;
+	background-position: fixed;
+	/*Border is preliminary*/
+	border: 1px solid #000;
+}
