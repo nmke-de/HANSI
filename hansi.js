@@ -252,6 +252,7 @@ const characterSubmitterNode = () => {
 				description: inode.lastChild.value
 			});
 			cache.sheets.push(sheet);
+			cache.selected.sheet = cache.sheets.length - 1;
 		}
 		Q("sheet").removeChild(Q("dialog"));
 	};
@@ -300,6 +301,5 @@ const download = () => {
 	let node = C("a");
 	node.href = "data:text/json;charset=utf-8," + encodeURI(JSON.stringify(cache.sheets[cache.selected.sheet]));
 	node.download = codify(cache.sheets[cache.selected.sheet].name) + ".json";
-	// node.style.display = "none";
 	node.click();
 }
