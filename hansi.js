@@ -295,3 +295,11 @@ const newCharacter = () => {
 	A(Q("sheet"))(dialog);
 	dialog.show();
 };
+
+const download = () => {
+	let node = C("a");
+	node.href = "data:text/json;charset=utf-8," + encodeURI(JSON.stringify(cache.sheets[cache.selected.sheet]));
+	node.download = codify(cache.sheets[cache.selected.sheet].name) + ".json";
+	// node.style.display = "none";
+	node.click();
+}
