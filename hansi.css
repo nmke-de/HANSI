@@ -127,6 +127,10 @@ sub, sup {
     resize: none
 }
 
+#dialog {
+	z-index: 1;
+}
+
 nav {
 	position: fixed;
 	background-position: fixed;

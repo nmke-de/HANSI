@@ -254,8 +254,9 @@ const characterSubmitterNode = () => {
 			});
 			cache.sheets.push(sheet);
 			cache.selected.sheet = cache.sheets.length - 1;
+			//fullUpdateSheet();
 		}
-		Q("sheet").removeChild(Q("dialog"));
+		//Q("sheet").removeChild(Q("dialog"));
 	};
 	let child = A(node)(C("button"));
 	child.value = "cancel";
@@ -294,7 +295,7 @@ const newCharacter = () => {
 	A(child)(h2Node("Inventar"));
 	A(child)(entryAdderNode(child, itemNode));
 	_(characterSubmitterNode());
-	A(Q("sheet"))(dialog);
+	Q("sheet").insertBefore(dialog, Q("sheet").firstChild);
 	dialog.show();
 };
 
@@ -303,4 +304,12 @@ const download = () => {
 	node.href = "data:text/json;charset=utf-8," + encodeURI(JSON.stringify(cache.sheets[cache.selected.sheet]));
 	node.download = codify(cache.sheets[cache.selected.sheet].name) + ".json";
 	node.click();
+}
+
+const fullUpdateSheet = () => {
+	const character = cache.sheets[cache.selected.sheet];
+	if (!character) return;
+	let sheet = Q("sheet");
+	sheet.innerHTML = "";
+	;
 }
