@@ -4,7 +4,7 @@
 
 ### What is HANS?
 
-HANS is a tabletop roleplaying system, much like Dungeons and Dragons, Call of Cthulu or Broken Compass, but setting agnostic like GURPS, FATE or HowToBeAHero.
+HANS is a tabletop roleplaying system, much like Dungeons & Dragons, Call of Cthulu or Broken Compass, but setting agnostic like GURPS, FATE or HowToBeAHero.
 <!-- TODO write more about HANS here. -->
 The acronym "HANS" stands for "Hundertseitige Attribute Nutzendes System", which is German and means "System using hundred-sided attributes".
 
