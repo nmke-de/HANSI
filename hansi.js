@@ -222,7 +222,7 @@ const characterSubmitterNode = () => {
 	let node = C("div");
 	node.className = ftprefix + "submit";
 	const close = (ev) => {
-		if(ev.target.value == "confirm") {
+		if(ev.target.value == "confirm" && Q(ftprefix + "name").value) {
 			let sheet = {
 				name: Q(ftprefix + "name").value,
 				backstory: Q(ftprefix + "backstory").value,
