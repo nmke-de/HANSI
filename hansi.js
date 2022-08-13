@@ -322,6 +322,7 @@ const characterSelectNode = (sheet_id) => {
 	child.innerText = "🗑";
 	child.onclick = () => {
 		cache.sheets.splice(sheet_id, 1);
+		cache.selected.sheet--;
 		fullUpdateSheet();
 	};
 	return node;
