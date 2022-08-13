@@ -312,9 +312,16 @@ const characterSelectNode = (sheet_id) => {
 	let node = C("li");
 	if (sheet_id == cache.selected.sheet) node.style.fontWeight = "bold";
 	node.className = "character-select";
-	node.innerText = cache.sheets[sheet_id].name;
-	node.onclick = () => {
+	let child = A(node)(C("a"));
+	child.innerText = cache.sheets[sheet_id].name;
+	child.onclick = () => {
 		cache.selected.sheet = sheet_id;
+		fullUpdateSheet();
+	};
+	child = A(node)(C("button"));
+	child.innerText = "🗑";
+	child.onclick = () => {
+		cache.sheets.splice(sheet_id, 1);
 		fullUpdateSheet();
 	};
 	return node;
@@ -328,10 +335,10 @@ const appendCharacterSelectNodes = () => {
 
 const fullUpdateSheet = () => {
 	const character = cache.sheets[cache.selected.sheet];
-	if (!character) return;
 	appendCharacterSelectNodes();
 	let sheet = Q("sheet");
 	sheet.innerHTML = "";
+	if (!character) return;
 	const _ = A(sheet);
 
 	_(nameNode(character.name));
