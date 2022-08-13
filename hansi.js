@@ -306,11 +306,26 @@ const download = () => {
 	node.href = "data:text/json;charset=utf-8," + encodeURI(JSON.stringify(cache.sheets[cache.selected.sheet]));
 	node.download = codify(cache.sheets[cache.selected.sheet].name) + ".json";
 	node.click();
-}
+};
+
+const characterSelectNode = (sheet) => {
+	let node = C("li");
+	if (sheet == cache.sheets[cache.selected.sheet]) node.style.fontWeight = "bold";
+	node.className = "character-select";
+	node.innerText = sheet.name;
+	return node;
+};
+
+const appendCharacterSelectNodes = () => {
+	let node = Q("character-list");
+	node.innerHTML = "";
+	cache.sheets.forEach(sheet => A(node)(characterSelectNode(sheet)));
+};
 
 const fullUpdateSheet = () => {
 	const character = cache.sheets[cache.selected.sheet];
 	if (!character) return;
+	appendCharacterSelectNodes();
 	let sheet = Q("sheet");
 	sheet.innerHTML = "";
 	const _ = A(sheet);
@@ -338,4 +353,4 @@ const fullUpdateSheet = () => {
 	child = A(child)(textareaNode("notes", "Hier kommen deine Notizen hin."));
 	child.cols = 30;
 	child.rows = 5;
-}
+};
