@@ -308,18 +308,22 @@ const download = () => {
 	node.click();
 };
 
-const characterSelectNode = (sheet) => {
+const characterSelectNode = (sheet_id) => {
 	let node = C("li");
-	if (sheet == cache.sheets[cache.selected.sheet]) node.style.fontWeight = "bold";
+	if (sheet_id == cache.selected.sheet) node.style.fontWeight = "bold";
 	node.className = "character-select";
-	node.innerText = sheet.name;
+	node.innerText = cache.sheets[sheet_id].name;
+	node.onclick = () => {
+		cache.selected.sheet = sheet_id;
+		fullUpdateSheet();
+	};
 	return node;
 };
 
 const appendCharacterSelectNodes = () => {
 	let node = Q("character-list");
 	node.innerHTML = "";
-	cache.sheets.forEach(sheet => A(node)(characterSelectNode(sheet)));
+	cache.sheets.forEach((_, id) => A(node)(characterSelectNode(id)));
 };
 
 const fullUpdateSheet = () => {
