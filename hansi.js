@@ -323,5 +323,19 @@ const fullUpdateSheet = () => {
 	child = _(fakeTableNode("attributes"));
 	A(child)(h2Node("Attribute"));
 	attributeNames.forEach((attr, index) => A(child)(slide50Node(attr, attr, character.attributes[index])));
-
+	child = _(fakeTableNode("stats"));
+	A(child)(h2Node("Werte"));
+	character.stats.forEach(stat => A(child)(slide50Node(stat.name, stat.base1, stat.value)));
+	child = _(fakeTableNode("skills"));
+	A(child)(h2Node("Andere Skills"));
+	character.skills.forEach(skill => A(child)(skillNode(skill.name, skill.value)));
+	child = _(fakeTableNode("inventory"));
+	A(child)(h2Node("Inventar"));
+	character.inventory.forEach(item => A(child)(itemNode(item.name, item.count, item.description)));
+	A(child)(entryAdderNode(child, itemNode));
+	child = _(C("div"));
+	A(child)(h2Node("Notizen"));
+	child = A(child)(textareaNode("notes", "Hier kommen deine Notizen hin."));
+	child.cols = 30;
+	child.rows = 5;
 }

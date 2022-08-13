@@ -123,10 +123,6 @@ sub, sup {
     padding: 2vh;
 }
 
-#notes {
-    resize: none
-}
-
 #dialog {
 	z-index: 1;
 }
