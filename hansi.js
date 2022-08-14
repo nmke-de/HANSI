@@ -28,6 +28,7 @@ window.addEventListener("load", () => {
 	});
 	if (localStorage.getItem("sheets") && localStorage.getItem("selected")) {
 		cache.sheets = JSON.parse(localStorage.getItem("sheets"));
+		// cache.templates = JSON.parse(localStorage.getItem("templates"));
 		cache.selected = JSON.parse(localStorage.getItem("selected"));
 		fullUpdateSheet();
 	}
@@ -102,16 +103,17 @@ const attributeNames = [
 	"Glück"
 ];
 
-const slide50Node = (name, attribute = undefined, value = 0) => {
+const slide50Node = (name, attributes = undefined, value = 0) => {
 	/*
 	<div class="tr $(codify attribute)">
 		<label class="td" for="$(codify name)">$name</label>
 		<input class="td" type="range" min="0" max="50" name="$(codify name)" value="$value">
 	</div>
 	*/
-	if (!attribute) attribute = name;
+	if (!attributes) attributes = [name];
 	let node = C("div");
-	node.className = "tr " + codify(attribute);
+	node.classList.add("tr");
+	attributes.forEach(attr => node.classList.add(codify(attr)));
 	let child = A(node)(C("label"));
 	child.className = "td";
 	child.for = codify(name);
@@ -150,7 +152,7 @@ const statAdderNode = () => {
 const appendTemplateStats = (faketable, template) => {
 	let refpoint = faketable.lastChild;
 	while (!refpoint.previousSibling.isSameNode(faketable.firstChild)) faketable.removeChild(refpoint.previousSibling);
-	template.stats.forEach(stat => faketable.insertBefore(slide50Node(stat.name, stat.base2 ? stat.base1 + " " + stat.base2 : stat.base1), refpoint));
+	template.stats.forEach(stat => faketable.insertBefore(slide50Node(stat.name, stat.base), refpoint));
 };
 
 const skillNode = (name, checked = false) => {
@@ -360,10 +362,10 @@ const fullUpdateSheet = () => {
 	child.innerHTML += "<p>" + character.backstory.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
 	child = _(fakeTableNode("attributes"));
 	A(child)(h2Node("Attribute"));
-	attributeNames.forEach((attr, index) => A(child)(slide50Node(attr, attr, character.attributes[index])));
+	attributeNames.forEach((attr, index) => A(child)(slide50Node(attr, [attr], character.attributes[index])));
 	child = _(fakeTableNode("stats"));
 	A(child)(h2Node("Werte"));
-	character.stats.forEach(stat => A(child)(slide50Node(stat.name, stat.base1, stat.value)));
+	character.stats.forEach(stat => A(child)(slide50Node(stat.name, stat.base, stat.value)));
 	child = _(fakeTableNode("skills"));
 	A(child)(h2Node("Andere Skills"));
 	character.skills.forEach(skill => A(child)(skillNode(skill.name, skill.value)));
