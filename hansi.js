@@ -26,7 +26,12 @@ window.addEventListener("load", () => {
 	].forEach((filename, i) => {
 		fetch("templates/" + filename).then(response => response.json()).then(text => cache.templates[i] = text);
 	});
-	Q("hitpoints").addEventListener("input", updateHitpoints);
+	if (localStorage.getItem("sheets") && localStorage.getItem("selected")) {
+		cache.sheets = JSON.parse(localStorage.getItem("sheets"));
+		cache.selected = JSON.parse(localStorage.getItem("selected"));
+		fullUpdateSheet();
+	}
+	// Q("hitpoints").addEventListener("input", updateHitpoints);
 });
 
 const updateHitpoints = (ev) => {
@@ -308,6 +313,11 @@ const download = () => {
 	node.click();
 };
 
+const storeLocally = () => {
+	localStorage.setItem("sheets", JSON.stringify(cache.sheets));
+	localStorage.setItem("selected", JSON.stringify(cache.selected));
+};
+
 const characterSelectNode = (sheet_id) => {
 	let node = C("li");
 	if (sheet_id == cache.selected.sheet) node.style.fontWeight = "bold";
@@ -322,7 +332,7 @@ const characterSelectNode = (sheet_id) => {
 	child.innerText = "🗑";
 	child.onclick = () => {
 		cache.sheets.splice(sheet_id, 1);
-		cache.selected.sheet--;
+		if (cache.selected.sheet > 0) cache.selected.sheet--;
 		fullUpdateSheet();
 	};
 	return node;
@@ -335,6 +345,7 @@ const appendCharacterSelectNodes = () => {
 };
 
 const fullUpdateSheet = () => {
+	storeLocally();
 	const character = cache.sheets[cache.selected.sheet];
 	appendCharacterSelectNodes();
 	let sheet = Q("sheet");
