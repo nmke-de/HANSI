@@ -244,11 +244,15 @@ const characterSubmitterNode = () => {
 			attributeNames.forEach(attr => sheet.attributes.push(parseInt(Q(ftprefix + codify(attr)).value)));
 			let refnode = Q(ftprefix + "stats");
 			let inode;
-			for(inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sheet.stats.push({
-				name: inode.firstChild.innerText,
-				value: parseInt(inode.lastChild.value)
-				// TODO add base stats
-			});
+			for(inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) {
+				let base = inode.classList;
+				base.remove("tr");
+				sheet.stats.push({
+					name: inode.firstChild.innerText,
+					value: parseInt(inode.lastChild.value),
+					base: base
+				});
+			}
 			refnode = Q(ftprefix + "skills");
 			for(inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sheet.skills.push({
 				name: inode.firstChild.innerText,
@@ -295,7 +299,7 @@ const newCharacter = () => {
 	attributeNames.forEach(attr => A(child)(slide50Node(attr)));
 	child = _(fakeTableNode("stats", ftprefix));
 	A(child)(h2Node("Werte"));
-	A(child)(entryAdderNode(child, (subnode) => slide50Node(subnode.firstChild.value, subnode.lastChild.value), statAdderNode()));
+	A(child)(entryAdderNode(child, (subnode) => slide50Node(subnode.firstChild.value, [...subnode.lastChild.selectedOptions].map(opt => opt.value)), statAdderNode()));
 	child = _(fakeTableNode("skills", ftprefix));
 	A(child)(h2Node("Andere Skills"));
 	A(child)(entryAdderNode(child, (subnode) => skillNode(subnode.value), skillAdderNode()));
