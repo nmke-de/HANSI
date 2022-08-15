@@ -5,124 +5,119 @@
 	"stats": [
 		{
 			"name": "Computer",
-			"base1": "Bildung"
+			"base": ["Bildung"]
 		},
 		{
 			"name": "Kultur",
-			"base1": "Bildung"
+			"base": ["Bildung"]
 		},
 		{
 			"name": "Manövrieren",
-			"base1": "Bildung"
+			"base": ["Bildung"]
 		},
 		{
 			"name": "Medizin",
-			"base1": "Bildung"
+			"base": ["Bildung"]
 		},
 		{
 			"name": "Naturwissenschaft",
-			"base1": "Bildung"
+			"base": ["Bildung"]
 		},
 		{
 			"name": "Technik",
-			"base1": "Bildung"
+			"base": ["Bildung"]
 		},
 		{
 			"name": "Wildnis",
-			"base1": "Bildung"
+			"base": ["Bildung"]
 		},
 		{
 			"name": "Kontakte",
-			"base1": "Charisma",
-			"base2": "Glück"
+			"base": ["Charisma", "Glück"]
 		},
 		{
 			"name": "Sympathie",
-			"base1": "Charisma"
+			"base": ["Charisma"]
 		},
 		{
 			"name": "Täuschen",
-			"base1": "Charisma"
+			"base": ["Charisma"]
 		},
 		{
 			"name": "Überreden",
-			"base1": "Charisma"
+			"base": ["Charisma"]
 		},
 		{
 			"name": "Überzeugen",
-			"base1": "Charisma"
+			"base": ["Charisma"]
 		},
 		{
 			"name": "Einschüchtern",
-			"base1": "Charisma",
-			"base2": "Stärke"
+			"base": ["Charisma", "Stärke"]
 		},
 		{
 			"name": "Akrobatik",
-			"base1": "Geschick"
+			"base": ["Geschick"]
 		},
 		{
 			"name": "Fingerfertigkeit",
-			"base1": "Geschick"
+			"base": ["Geschick"]
 		},
 		{
 			"name": "Heimlichkeit",
-			"base1": "Geschick"
+			"base": ["Geschick"]
 		},
 		{
 			"name": "Klettern",
-			"base1": "Geschick"
+			"base": ["Geschick"]
 		},
 		{
 			"name": "Schießen",
-			"base1": "Geschick"
+			"base": ["Geschick"]
 		},
 		{
 			"name": "Bewaffneter Nahkampf",
-			"base1": "Geschick",
-			"base2": "Stärke"
+			"base": ["Geschick", "Stärke"]
 		},
 		{
 			"name": "Werfen",
-			"base1": "Geschick",
-			"base2": "Stärke"
+			"base": ["Geschick", "Stärke"]
 		},
 		{
 			"name": "Aktive Wahrnehmung",
-			"base1": "Intelligenz"
+			"base": ["Intelligenz"]
 		},
 		{
 			"name": "Bibliotheksnutzung",
-			"base1": "Intelligenz"
+			"base": ["Intelligenz"]
 		},
 		{
 			"name": "Gedächtnis",
-			"base1": "Intelligenz"
+			"base": ["Intelligenz"]
 		},
 		{
 			"name": "Passive Wahrnehmung",
-			"base1": "Intelligenz"
+			"base": ["Intelligenz"]
 		},
 		{
 			"name": "Spurensuche",
-			"base1": "Intelligenz"
+			"base": ["Intelligenz"]
 		},
 		{
 			"name": "Menschenkenntnis",
-			"base1": "Intelligenz",
-			"base2": "Charisma"
+			"base": ["Intelligenz", "Charisma"]
 		},
 		{
 			"name": "Ausdauer",
-			"base1": "Stärke"
+			"base": ["Stärke"]
 		},
 		{
 			"name": "Handwerk",
-			"base1": "Stärke"
+			"base": ["Stärke"]
 		},
 		{
 			"name": "Unbewaffneter Nahkampf",
-			"base1": "Stärke"
+			"base": ["Stärke"]
 		}
 	],
 	"skills": [
