@@ -184,7 +184,10 @@ const skillNode = (name, checked = false, index = -1) => {
 	child.name = codify(name);
 	child.id = codify(name);
 	child.checked = checked;
-	if (index > -1) child.onchange = () => cache.sheets[cache.selected.sheet].skills[index].value = child.checked;
+	if (index > -1) child.onchange = () => {
+		cache.sheets[cache.selected.sheet].skills[index].value = child.checked;
+		storeLocally();
+	}
 	return node;
 };
 
@@ -202,7 +205,7 @@ const appendTemplateSkills = (faketable, template) => {
 	template.skills.forEach(skill => faketable.insertBefore(skillNode(skill), refpoint));
 };
 
-const itemNode = (name = "", count = 1, description = "") => {
+const itemNode = (name = "", count = 1, description = "", index = -1) => {
 	// TODO define input-data names.
 	let node = C("div");
 	node.className = "tr";
@@ -212,15 +215,33 @@ const itemNode = (name = "", count = 1, description = "") => {
 	child.min = 0;
 	child.value = count;
 	child.placeholder = "Anzahl";
+	let item_args = [];
+	item_args.push(child);
 	child = A(node)(C("input"));
 	child.className = "td";
 	child.type = "text";
 	child.value = name;
 	child.placeholder = "Gegenstandsname";
+	item_args.push(child);
 	child = A(node)(C("textarea"));
 	child.className = "td";
 	child.value = description;
 	child.placeholder = "Beschreibung";
+	item_args.push(child);
+	if (index > -1) {
+		item_args[0].onchange = () => {
+			cache.sheets[cache.selected.sheet].inventory[index].count = parseInt(item_args[0].value);
+			storeLocally();
+		};
+		item_args[1].oninput = () => {
+			cache.sheets[cache.selected.sheet].inventory[index].name = item_args[1].value;
+			storeLocally();
+		};
+		item_args[2].oninput = () => {
+			cache.sheets[cache.selected.sheet].inventory[index].description = item_args[2].value;
+			storeLocally();
+		};
+	}
 	return node;
 };
 
@@ -387,7 +408,7 @@ const fullUpdateSheet = () => {
 	character.skills.forEach((skill, index) => A(child)(skillNode(skill.name, skill.value, index)));
 	child = _(fakeTableNode("inventory"));
 	A(child)(h2Node("Inventar"));
-	character.inventory.forEach(item => A(child)(itemNode(item.name, item.count, item.description)));
+	character.inventory.forEach((item, index) => A(child)(itemNode(item.name, item.count, item.description, index)));
 	A(child)(entryAdderNode(child, itemNode));
 	child = _(C("div"));
 	A(child)(h2Node("Notizen"));
