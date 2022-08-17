@@ -229,7 +229,7 @@ const characterSubmitterNode = () => {
 	let node = C("div");
 	node.className = ftprefix + "submit";
 	const close = (ev) => {
-		if(ev.target.value == "confirm" && Q(ftprefix + "name").value) {
+		if (ev.target.value == "confirm" && Q(ftprefix + "name").value) {
 			let sheet = {
 				name: Q(ftprefix + "name").value,
 				backstory: Q(ftprefix + "backstory").value,
@@ -244,7 +244,7 @@ const characterSubmitterNode = () => {
 			attributeNames.forEach(attr => sheet.attributes.push(parseInt(Q(ftprefix + codify(attr)).value)));
 			let refnode = Q(ftprefix + "stats");
 			let inode;
-			for(inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) {
+			for (inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) {
 				let base = inode.classList;
 				base.remove("tr");
 				sheet.stats.push({
@@ -254,12 +254,12 @@ const characterSubmitterNode = () => {
 				});
 			}
 			refnode = Q(ftprefix + "skills");
-			for(inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sheet.skills.push({
+			for (inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sheet.skills.push({
 				name: inode.firstChild.innerText,
 				value: inode.lastChild.checked
 			});
 			refnode = Q(ftprefix + "inventory");
-			for(inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sheet.inventory.push({
+			for (inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sheet.inventory.push({
 				count: parseInt(inode.firstChild.value),
 				name: inode.firstChild.nextSibling.value,
 				description: inode.lastChild.value
