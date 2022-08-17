@@ -379,8 +379,9 @@ const fullUpdateSheet = () => {
 	A(child)(entryAdderNode(child, itemNode));
 	child = _(C("div"));
 	A(child)(h2Node("Notizen"));
-	child = A(child)(textareaNode("notes", "Hier kommen deine Notizen hin."));
+	child = A(child)(textareaNode("notes", "Hier kommen deine Notizen hin.", character.notes));
 	child.cols = 30;
 	child.rows = 5;
 	child.onkeyup = () => character.notes = child.value;
+	child.onmouseout = child.onkeyup;
 };
