@@ -382,6 +382,5 @@ const fullUpdateSheet = () => {
 	child = A(child)(textareaNode("notes", "Hier kommen deine Notizen hin.", character.notes));
 	child.cols = 30;
 	child.rows = 5;
-	child.onkeyup = () => character.notes = child.value;
-	child.onmouseout = child.onkeyup;
+	child.oninput = () => character.notes = child.value;
 };
