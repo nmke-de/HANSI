@@ -121,11 +121,23 @@ const slide50Node = (name, attributes = undefined, value = 0) => {
 	child = A(node)(C("input"));
 	child.className = "td";
 	child.name = codify(name);
+	child.type = "number";
+	child.min = 0;
+	child.max = 50;
+	child.value = value;
+	let input_methods = [];
+	input_methods.push(child);
+	child = A(node)(C("input"));
+	child.className = "td";
+	child.name = codify(name);
 	child.id = ftprefix + codify(name);
 	child.type = "range";
 	child.min = 0;
 	child.max = 50;
 	child.value = value;
+	input_methods.push(child);
+	input_methods[0].oninput = () => input_methods[1].value = input_methods[0].value;
+	input_methods[1].oninput = () => input_methods[0].value = input_methods[1].value;
 	return node;
 };
 
