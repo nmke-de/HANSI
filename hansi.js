@@ -113,6 +113,8 @@ const slide50Node = (name, attributes = undefined, value = 0) => {
 	if (!attributes) attributes = [name];
 	let node = C("div");
 	node.classList.add("tr");
+	console.log(attributes);
+	console.log(typeof(attributes));
 	attributes.forEach(attr => node.classList.add(codify(attr)));
 	let child = A(node)(C("label"));
 	child.className = "td";
@@ -257,8 +259,8 @@ const characterSubmitterNode = () => {
 			let refnode = Q(ftprefix + "stats");
 			let inode;
 			for (inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) {
-				let base = inode.classList;
-				base.remove("tr");
+				let base = [];
+				inode.classList.forEach(cls => {if (cls != "tr") base.push(cls)});
 				sheet.stats.push({
 					name: inode.firstChild.innerText,
 					value: parseInt(inode.lastChild.value),
