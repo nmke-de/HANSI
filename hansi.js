@@ -3,7 +3,6 @@ const Q = (id) => document.getElementById(id);
 const C = (tagname) => document.createElement(tagname);
 const A = (parent) => (child) => parent.appendChild(child);
 
-// Global cache. TODO store this in WebStorage or similar.
 let cache = {
 	sheets: [],
 	templates: [],
