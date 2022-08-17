@@ -315,6 +315,8 @@ const characterSubmitterNode = () => {
 };
 
 const newCharacter = () => {
+	cache.selected.sheet = -1;
+	fullUpdateSheet();
 	// TODO do more than a demo here!
 	let dialog = C("dialog");
 	dialog.id = "dialog";
