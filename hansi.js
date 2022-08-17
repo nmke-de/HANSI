@@ -135,8 +135,16 @@ const slide50Node = (name, attributes = undefined, value = 0) => {
 	child.max = 50;
 	child.value = value;
 	input_methods.push(child);
-	input_methods[0].oninput = () => input_methods[1].value = input_methods[0].value;
-	input_methods[1].oninput = () => input_methods[0].value = input_methods[1].value;
+	if (attributes[0] != name) {
+		input_methods[0].oninput = () => input_methods[1].value = input_methods[0].value;
+		input_methods[1].oninput = () => input_methods[0].value = input_methods[1].value;
+	} else {
+		input_methods[0].step = 2;
+		input_methods[0].max = 100;
+		input_methods[0].value = value * 2;
+		input_methods[0].oninput = () => input_methods[1].value = input_methods[0].value / 2;
+		input_methods[1].oninput = () => input_methods[0].value = input_methods[1].value * 2;
+	}
 	return node;
 };
 
