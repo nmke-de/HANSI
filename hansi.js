@@ -166,7 +166,7 @@ const appendTemplateStats = (faketable, template) => {
 	template.stats.forEach(stat => faketable.insertBefore(slide50Node(stat.name, stat.base), refpoint));
 };
 
-const skillNode = (name, checked = false) => {
+const skillNode = (name, checked = false, index = -1) => {
 	/*
 	<div class="tr">
 		<input class="td" type="checkbox" name="$(codify name)" checked?>
@@ -183,7 +183,8 @@ const skillNode = (name, checked = false) => {
 	child.type = "checkbox";
 	child.name = codify(name);
 	child.id = codify(name);
-	child.checked = checked; // Note to myself: Code might be faulty
+	child.checked = checked;
+	if (index > -1) child.onchange = () => cache.sheets[cache.selected.sheet].skills[index].value = child.checked;
 	return node;
 };
 
@@ -383,7 +384,7 @@ const fullUpdateSheet = () => {
 	character.stats.forEach(stat => A(child)(slide50Node(stat.name, stat.base, stat.value)));
 	child = _(fakeTableNode("skills"));
 	A(child)(h2Node("Andere Skills"));
-	character.skills.forEach(skill => A(child)(skillNode(skill.name, skill.value)));
+	character.skills.forEach((skill, index) => A(child)(skillNode(skill.name, skill.value, index)));
 	child = _(fakeTableNode("inventory"));
 	A(child)(h2Node("Inventar"));
 	character.inventory.forEach(item => A(child)(itemNode(item.name, item.count, item.description)));
