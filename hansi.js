@@ -246,7 +246,6 @@ const itemNode = (name = "", index = -1, count = 1, description = "") => {
 
 const entryAdderNode = (faketable, nodegen, subnode = null, getindex = null, action = () => undefined) => {
 	// TODO give more options and more arguments to nodegen
-	action();
 	let node = C("div");
 	node.className = "append-button-div tr";
 	if (subnode) A(node)(subnode).className = "td";
@@ -254,7 +253,10 @@ const entryAdderNode = (faketable, nodegen, subnode = null, getindex = null, act
 	child.className = "append-button td";
 	child.innerText = "+";
 	child.type = "button";
-	child.onclick = () => faketable.insertBefore(nodegen(subnode ? subnode : "", getindex ? getindex() : -1), faketable.lastChild);
+	child.onclick = () => {
+		action();
+		faketable.insertBefore(nodegen(subnode ? subnode : "", getindex ? getindex() : -1), faketable.lastChild);
+	}
 	return node;
 };
 
