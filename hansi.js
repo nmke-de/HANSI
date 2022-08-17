@@ -156,7 +156,6 @@ const statAdderNode = () => {
 	child = A(select)(C("option"));
 	child.value = "";
 	child.innerText = "XX";
-	// TODO limit number of attributes that can be selected.
 	return node;
 };
 
@@ -205,7 +204,7 @@ const appendTemplateSkills = (faketable, template) => {
 	template.skills.forEach(skill => faketable.insertBefore(skillNode(skill), refpoint));
 };
 
-const itemNode = (name = "", count = 1, description = "", index = -1) => {
+const itemNode = (name = "", index = -1, count = 1, description = "") => {
 	// TODO define input-data names.
 	let node = C("div");
 	node.className = "tr";
@@ -245,8 +244,9 @@ const itemNode = (name = "", count = 1, description = "", index = -1) => {
 	return node;
 };
 
-const entryAdderNode = (faketable, nodegen, subnode = null) => {
-	// TODO give more options
+const entryAdderNode = (faketable, nodegen, subnode = null, getindex = null, action = () => undefined) => {
+	// TODO give more options and more arguments to nodegen
+	action();
 	let node = C("div");
 	node.className = "append-button-div tr";
 	if (subnode) A(node)(subnode).className = "td";
@@ -254,7 +254,7 @@ const entryAdderNode = (faketable, nodegen, subnode = null) => {
 	child.className = "append-button td";
 	child.innerText = "+";
 	child.type = "button";
-	child.onclick = () => faketable.insertBefore(nodegen(subnode ? subnode : ""), faketable.lastChild);
+	child.onclick = () => faketable.insertBefore(nodegen(subnode ? subnode : "", getindex ? getindex() : -1), faketable.lastChild);
 	return node;
 };
 
@@ -279,7 +279,7 @@ const characterSubmitterNode = () => {
 			let inode;
 			for (inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) {
 				let base = [];
-				inode.classList.forEach(cls => {if (cls != "tr") base.push(cls)});
+				inode.classList.forEach(cls => { if (cls != "tr") base.push(cls) });
 				sheet.stats.push({
 					name: inode.firstChild.innerText,
 					value: parseInt(inode.lastChild.value),
@@ -410,8 +410,12 @@ const fullUpdateSheet = () => {
 	character.skills.forEach((skill, index) => A(child)(skillNode(skill.name, skill.value, index)));
 	child = _(fakeTableNode("inventory"));
 	A(child)(h2Node("Inventar"));
-	character.inventory.forEach((item, index) => A(child)(itemNode(item.name, item.count, item.description, index)));
-	A(child)(entryAdderNode(child, itemNode));
+	character.inventory.forEach((item, index) => A(child)(itemNode(item.name, index, item.count, item.description)));
+	A(child)(entryAdderNode(child, itemNode, null, () => (cache.sheets[cache.selected.sheet].inventory.length - 1), () => character.inventory.push({
+		count: 1,
+		name: "",
+		description: ""
+	})));
 	child = _(C("div"));
 	A(child)(h2Node("Notizen"));
 	child = A(child)(textareaNode("notes", "Hier kommen deine Notizen hin.", character.notes));
