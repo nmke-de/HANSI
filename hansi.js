@@ -113,8 +113,6 @@ const slide50Node = (name, attributes = undefined, value = 0) => {
 	if (!attributes) attributes = [name];
 	let node = C("div");
 	node.classList.add("tr");
-	console.log(attributes);
-	console.log(typeof(attributes));
 	attributes.forEach(attr => node.classList.add(codify(attr)));
 	let child = A(node)(C("label"));
 	child.className = "td";
