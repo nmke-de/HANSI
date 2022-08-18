@@ -140,14 +140,14 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 		input_methods[0].oninput = () => {
 			input_methods[1].value = parseInt(input_methods[0].value);
 			if (index > -1) {
-				cache.sheets[cache.selected.sheet].stats[index].value = parseInt(input_methods[1].value);
+				cache.sheets[cache.selected.sheet].stats[index].value = (input_methods[1].value - input_methods[1].min);
 				storeLocally();
 			}
 		};
 		input_methods[1].oninput = () => {
 			input_methods[0].value = parseInt(input_methods[1].value);
 			if (index > -1) {
-				cache.sheets[cache.selected.sheet].stats[index].value = parseInt(input_methods[1].value);
+				cache.sheets[cache.selected.sheet].stats[index].value = (input_methods[1].value - input_methods[1].min);
 				storeLocally();
 			}
 		};
