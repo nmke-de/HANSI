@@ -129,7 +129,7 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 	child = A(node)(C("input"));
 	child.className = "td";
 	child.name = codify(name);
-	child.id = ftprefix + codify(name);
+	child.id = index > -1 ? codify(name) : ftprefix + codify(name);
 	child.type = "range";
 	child.min = 0;
 	child.max = 50;
