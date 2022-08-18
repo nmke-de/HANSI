@@ -137,16 +137,16 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 	input_methods.push(child);
 	if (attributes[0] != name) {
 		input_methods[0].oninput = () => {
-			input_methods[1].value = input_methods[0].value;
+			input_methods[1].value = parseInt(input_methods[0].value);
 			if (index > -1) {
-				cache.sheets[cache.selected.sheet].stats[index].value = input_methods[1].value;
+				cache.sheets[cache.selected.sheet].stats[index].value = parseInt(input_methods[1].value);
 				storeLocally();
 			}
 		};
 		input_methods[1].oninput = () => {
-			input_methods[0].value = input_methods[1].value;
+			input_methods[0].value = parseInt(input_methods[1].value);
 			if (index > -1) {
-				cache.sheets[cache.selected.sheet].stats[index].value = input_methods[1].value;
+				cache.sheets[cache.selected.sheet].stats[index].value = parseInt(input_methods[1].value);
 				storeLocally();
 			}
 		};
@@ -167,16 +167,16 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 		input_methods[0].max = 100;
 		input_methods[0].value = value * 2;
 		input_methods[0].oninput = () => {
-			input_methods[1].value = input_methods[0].value / 2;
+			input_methods[1].value = parseInt(input_methods[0].value) / 2;
 			if (index > -1) {
-				cache.sheets[cache.selected.sheet].attributes[index] = input_methods[1].value;
+				cache.sheets[cache.selected.sheet].attributes[index] = parseInt(input_methods[1].value);
 				storeLocally();
 			}
 		};
 		input_methods[1].oninput = () => {
-			input_methods[0].value = input_methods[1].value * 2;
+			input_methods[0].value = parseInt(input_methods[1].value) * 2;
 			if (index > -1) {
-				cache.sheets[cache.selected.sheet].attributes[index] = input_methods[1].value;
+				cache.sheets[cache.selected.sheet].attributes[index] = parseInt(input_methods[1].value);
 				storeLocally();
 			}
 		};
