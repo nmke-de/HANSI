@@ -102,7 +102,7 @@ const attributeNames = [
 	"Glück"
 ];
 
-const slide50Node = (name, attributes = undefined, value = 0) => {
+const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 	/*
 	<div class="tr $(codify attribute)">
 		<label class="td" for="$(codify name)">$name</label>
@@ -142,8 +142,20 @@ const slide50Node = (name, attributes = undefined, value = 0) => {
 		input_methods[0].step = 2;
 		input_methods[0].max = 100;
 		input_methods[0].value = value * 2;
-		input_methods[0].oninput = () => input_methods[1].value = input_methods[0].value / 2;
-		input_methods[1].oninput = () => input_methods[0].value = input_methods[1].value * 2;
+		input_methods[0].oninput = () => {
+			input_methods[1].value = input_methods[0].value / 2;
+			if (index > -1) {
+				cache.sheets[cache.selected.sheet].attributes[index] = input_methods[1].value;
+				storeLocally();
+			}
+		};
+		input_methods[1].oninput = () => {
+			input_methods[0].value = input_methods[1].value * 2;
+			if (index > -1) {
+				cache.sheets[cache.selected.sheet].attributes[index] = input_methods[1].value;
+				storeLocally();
+			}
+		};
 	}
 	return node;
 };
@@ -411,7 +423,7 @@ const fullUpdateSheet = () => {
 	child.innerHTML += "<p>" + character.backstory.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
 	child = _(fakeTableNode("attributes"));
 	A(child)(h2Node("Attribute"));
-	attributeNames.forEach((attr, index) => A(child)(slide50Node(attr, [attr], character.attributes[index])));
+	attributeNames.forEach((attr, index) => A(child)(slide50Node(attr, [attr], character.attributes[index], index)));
 	child = _(fakeTableNode("stats"));
 	A(child)(h2Node("Werte"));
 	character.stats.forEach(stat => A(child)(slide50Node(stat.name, stat.base, stat.value)));
