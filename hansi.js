@@ -11,6 +11,7 @@ let cache = {
 	}
 };
 
+let statGroup = {};
 
 const ftprefix = "cc-";
 
@@ -150,18 +151,19 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 				storeLocally();
 			}
 		};
-		attributes.forEach(attr => node.addEventListener(attr, () => {
+		node.attrup = () => {
 			let max_base = 0;
 			attributes.forEach(attr => {
-				let attr_base = Q(attr).value;
+				let attr_base = parseInt(Q(attr).value);
 				max_base = max_base < attr_base ? attr_base : max_base;
 			});
 			input_methods.forEach(im => {
+				let diff = (input_methods[1].value - im.min);
 				im.min = max_base;
 				im.max = max_base + 50;
-				im.value += (max_base - im.min);
+				im.value = max_base + diff;
 			});
-		}));
+		};
 	} else {
 		input_methods[0].step = 2;
 		input_methods[0].max = 100;
@@ -170,6 +172,7 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 			input_methods[1].value = parseInt(input_methods[0].value) / 2;
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].attributes[index] = parseInt(input_methods[1].value);
+				statGroup[codify(name)].forEach(statnode => statnode.attrup());
 				storeLocally();
 			}
 		};
@@ -177,6 +180,7 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 			input_methods[0].value = parseInt(input_methods[1].value) * 2;
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].attributes[index] = parseInt(input_methods[1].value);
+				statGroup[codify(name)].forEach(statnode => statnode.attrup());
 				storeLocally();
 			}
 		};
@@ -447,10 +451,16 @@ const fullUpdateSheet = () => {
 	child.innerHTML += "<p>" + character.backstory.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
 	child = _(fakeTableNode("attributes"));
 	A(child)(h2Node("Attribute"));
-	attributeNames.forEach((attr, index) => A(child)(slide50Node(attr, [attr], character.attributes[index], index)));
+	attributeNames.forEach((attr, index) => {
+		A(child)(slide50Node(attr, [attr], character.attributes[index], index));
+		statGroup[codify(attr)] = [];
+	});
 	child = _(fakeTableNode("stats"));
 	A(child)(h2Node("Werte"));
-	character.stats.forEach((stat, index) => A(child)(slide50Node(stat.name, stat.base, stat.value, index)));
+	character.stats.forEach((stat, index) => {
+		let statNode = A(child)(slide50Node(stat.name, stat.base, stat.value, index));
+		stat.base.forEach(attr => statGroup[attr].push(statNode));
+	});
 	child = _(fakeTableNode("skills"));
 	A(child)(h2Node("Andere Skills"));
 	character.skills.forEach((skill, index) => A(child)(skillNode(skill.name, skill.value, index)));
