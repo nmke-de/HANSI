@@ -136,8 +136,32 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 	child.value = value;
 	input_methods.push(child);
 	if (attributes[0] != name) {
-		input_methods[0].oninput = () => input_methods[1].value = input_methods[0].value;
-		input_methods[1].oninput = () => input_methods[0].value = input_methods[1].value;
+		input_methods[0].oninput = () => {
+			input_methods[1].value = input_methods[0].value;
+			if (index > -1) {
+				cache.sheets[cache.selected.sheet].stats[index].value = input_methods[1].value;
+				storeLocally();
+			}
+		};
+		input_methods[1].oninput = () => {
+			input_methods[0].value = input_methods[1].value;
+			if (index > -1) {
+				cache.sheets[cache.selected.sheet].stats[index].value = input_methods[1].value;
+				storeLocally();
+			}
+		};
+		attributes.forEach(attr => node.addEventListener(attr, () => {
+			let max_base = 0;
+			attributes.forEach(attr => {
+				let attr_base = Q(attr).value;
+				max_base = max_base < attr_base ? attr_base : max_base;
+			});
+			input_methods.forEach(im => {
+				im.min = max_base;
+				im.max = max_base + 50;
+				im.value += (max_base - im.min);
+			});
+		}));
 	} else {
 		input_methods[0].step = 2;
 		input_methods[0].max = 100;
@@ -426,7 +450,7 @@ const fullUpdateSheet = () => {
 	attributeNames.forEach((attr, index) => A(child)(slide50Node(attr, [attr], character.attributes[index], index)));
 	child = _(fakeTableNode("stats"));
 	A(child)(h2Node("Werte"));
-	character.stats.forEach(stat => A(child)(slide50Node(stat.name, stat.base, stat.value)));
+	character.stats.forEach((stat, index) => A(child)(slide50Node(stat.name, stat.base, stat.value, index)));
 	child = _(fakeTableNode("skills"));
 	A(child)(h2Node("Andere Skills"));
 	character.skills.forEach((skill, index) => A(child)(skillNode(skill.name, skill.value, index)));
