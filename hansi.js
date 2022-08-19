@@ -145,7 +145,7 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 	child.type = "range";
 	child.min = min;
 	child.max = min + 50;
-	child.value = value;
+	child.value = min + value;
 	input_methods.push(child);
 	if (attributes[0] != name) {
 		input_methods[0].oninput = () => {
