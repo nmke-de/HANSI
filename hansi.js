@@ -51,7 +51,7 @@ const templateChooserNode = () => {
 		child.value = i;
 		child.innerText = template.template + " template";
 	});
-	node.onclick = (ev) => {
+	node.onchange = (ev) => {
 		appendTemplateStats(Q("cc-stats"), cache.templates[ev.target.value]);
 		appendTemplateSkills(Q("cc-skills"), cache.templates[ev.target.value]);
 	};
@@ -154,7 +154,9 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 		node.attrup = () => {
 			let max_base = 0;
 			attributes.forEach(attr => {
-				let attr_base = parseInt(Q(attr).value);
+				let attr_base;
+				if (index > -1) attr_base = parseInt(Q(attr).value);
+				else attr_base = parseInt(Q(ftprefix + codify(attr)).value);
 				max_base = max_base < attr_base ? attr_base : max_base;
 			});
 			input_methods.forEach(im => {
@@ -170,17 +172,18 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 		input_methods[0].value = value * 2;
 		input_methods[0].oninput = () => {
 			input_methods[1].value = parseInt(input_methods[0].value) / 2;
+			console.log(statGroup);
+			statGroup[codify(name)].forEach(statnode => statnode.attrup());
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].attributes[index] = parseInt(input_methods[1].value);
-				statGroup[codify(name)].forEach(statnode => statnode.attrup());
 				storeLocally();
 			}
 		};
 		input_methods[1].oninput = () => {
 			input_methods[0].value = parseInt(input_methods[1].value) * 2;
+			statGroup[codify(name)].forEach(statnode => statnode.attrup());
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].attributes[index] = parseInt(input_methods[1].value);
-				statGroup[codify(name)].forEach(statnode => statnode.attrup());
 				storeLocally();
 			}
 		};
@@ -210,7 +213,12 @@ const statAdderNode = () => {
 const appendTemplateStats = (faketable, template) => {
 	let refpoint = faketable.lastChild;
 	while (!refpoint.previousSibling.isSameNode(faketable.firstChild)) faketable.removeChild(refpoint.previousSibling);
-	template.stats.forEach(stat => faketable.insertBefore(slide50Node(stat.name, stat.base), refpoint));
+	attributeNames.forEach(attr => statGroup[codify(attr)] = []);
+	template.stats.forEach(stat => {
+		let statnode = slide50Node(stat.name, stat.base);
+		faketable.insertBefore(slide50Node(stat.name, stat.base), refpoint);
+		stat.base.forEach(attr => statGroup[codify(attr)].push(refpoint.previousSibling));
+	});
 };
 
 const skillNode = (name, checked = false, index = -1) => {
@@ -332,7 +340,7 @@ const characterSubmitterNode = () => {
 				inode.classList.forEach(cls => { if (cls != "tr") base.push(cls) });
 				sheet.stats.push({
 					name: inode.firstChild.innerText,
-					value: parseInt(inode.lastChild.value),
+					value: (inode.lastChild.value - inode.lastChild.min),
 					base: base
 				});
 			}
@@ -381,7 +389,10 @@ const newCharacter = () => {
 	A(child)(textareaNode(ftprefix + "backstory", "Backstory"));
 	child = _(fakeTableNode("attributes", ftprefix));
 	A(child)(h2Node("Attribute"));
-	attributeNames.forEach(attr => A(child)(slide50Node(attr)));
+	attributeNames.forEach(attr => {
+		A(child)(slide50Node(attr));
+		statGroup[codify(attr)] = [];
+	});
 	child = _(fakeTableNode("stats", ftprefix));
 	A(child)(h2Node("Werte"));
 	A(child)(entryAdderNode(child, (subnode) => slide50Node(subnode.firstChild.value, [...subnode.lastChild.selectedOptions].map(opt => opt.value)), statAdderNode()));
