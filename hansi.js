@@ -103,7 +103,18 @@ const attributeNames = [
 	"Glück"
 ];
 
-const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
+const maxBase = (attributes, index = -1) => {
+	let max_base = 0;
+	attributes.forEach(attr => {
+		let attr_base;
+		if (index > -1) attr_base = parseInt(Q(attr).value);
+		else attr_base = parseInt(Q(ftprefix + codify(attr)).value);
+		max_base = max_base < attr_base ? attr_base : max_base;
+	});
+	return max_base;
+}
+
+const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -1) => {
 	/*
 	<div class="tr $(codify attribute)">
 		<label class="td" for="$(codify name)">$name</label>
@@ -122,9 +133,9 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 	child.className = "td";
 	child.name = codify(name);
 	child.type = "number";
-	child.min = 0;
-	child.max = 50;
-	child.value = value;
+	child.min = min;
+	child.max = min + 50;
+	child.value = min + value;
 	let input_methods = [];
 	input_methods.push(child);
 	child = A(node)(C("input"));
@@ -132,8 +143,8 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 	child.name = codify(name);
 	child.id = index > -1 ? codify(name) : ftprefix + codify(name);
 	child.type = "range";
-	child.min = 0;
-	child.max = 50;
+	child.min = min;
+	child.max = min + 50;
 	child.value = value;
 	input_methods.push(child);
 	if (attributes[0] != name) {
@@ -152,13 +163,7 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 			}
 		};
 		node.attrup = () => {
-			let max_base = 0;
-			attributes.forEach(attr => {
-				let attr_base;
-				if (index > -1) attr_base = parseInt(Q(attr).value);
-				else attr_base = parseInt(Q(ftprefix + codify(attr)).value);
-				max_base = max_base < attr_base ? attr_base : max_base;
-			});
+			let max_base = maxBase(attributes, index);
 			input_methods.forEach(im => {
 				let diff = (input_methods[1].value - im.min);
 				im.min = max_base;
@@ -172,7 +177,6 @@ const slide50Node = (name, attributes = undefined, value = 0, index = -1) => {
 		input_methods[0].value = value * 2;
 		input_methods[0].oninput = () => {
 			input_methods[1].value = parseInt(input_methods[0].value) / 2;
-			console.log(statGroup);
 			statGroup[codify(name)].forEach(statnode => statnode.attrup());
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].attributes[index] = parseInt(input_methods[1].value);
@@ -463,13 +467,14 @@ const fullUpdateSheet = () => {
 	child = _(fakeTableNode("attributes"));
 	A(child)(h2Node("Attribute"));
 	attributeNames.forEach((attr, index) => {
-		A(child)(slide50Node(attr, [attr], character.attributes[index], index));
+		A(child)(slide50Node(attr, [attr], character.attributes[index], 0, index));
 		statGroup[codify(attr)] = [];
 	});
 	child = _(fakeTableNode("stats"));
 	A(child)(h2Node("Werte"));
 	character.stats.forEach((stat, index) => {
-		let statNode = A(child)(slide50Node(stat.name, stat.base, stat.value, index));
+		let max_base = maxBase(stat.base, index);
+		let statNode = A(child)(slide50Node(stat.name, stat.base, stat.value, max_base, index));
 		stat.base.forEach(attr => statGroup[attr].push(statNode));
 	});
 	child = _(fakeTableNode("skills"));
