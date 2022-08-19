@@ -426,14 +426,21 @@ const upload = () => {
 	const _ = A(child);
 	child = _(C("input"));
 	child.type = "file";
+	child.accept = ".json";
 	child.id = "file-picker";
 	child = _(C("button"));
 	child.innerText = "Load";
 	child.onclick = () => {
-		console.log(Q("file-picker").value);
+		const reader = new FileReader();
+		reader.onload = () => {
+			cache.sheets.push(JSON.parse(reader.result));
+			cache.selected.sheet = cache.sheets.length - 1;
+			fullUpdateSheet();
+		};
+		reader.readAsText(Q("file-picker").files[0]);
 		Q("sheet").removeChild(node);
 	};
-	A(Q("sheet"))(node);
+	Q("sheet").insertBefore(node, Q("sheet").firstChild);
 	node.show();
 }
 
