@@ -412,12 +412,30 @@ const newCharacter = () => {
 };
 
 const download = () => {
-	let node = C("a");
 	if (!cache.sheets[cache.selected.sheet]) return;
+	let node = C("a");
 	node.href = "data:text/json;charset=utf-8," + encodeURI(JSON.stringify(cache.sheets[cache.selected.sheet]));
 	node.download = codify(cache.sheets[cache.selected.sheet].name) + ".json";
 	node.click();
 };
+
+const upload = () => {
+	let node = C("dialog");
+	let child = A(node)(C("form"));
+	child.method = "dialog";
+	const _ = A(child);
+	child = _(C("input"));
+	child.type = "file";
+	child.id = "file-picker";
+	child = _(C("button"));
+	child.innerText = "Load";
+	child.onclick = () => {
+		console.log(Q("file-picker").value);
+		Q("sheet").removeChild(node);
+	};
+	A(Q("sheet"))(node);
+	node.show();
+}
 
 const storeLocally = () => {
 	localStorage.setItem("sheets", JSON.stringify(cache.sheets));
