@@ -405,7 +405,8 @@ const characterSubmitterNode = () => {
 			cache.selected.sheet = cache.sheets.length - 1;
 			fullUpdateSheet();
 		}
-		//Q("sheet").removeChild(Q("dialog"));
+		else if (ev.target.value == "cancel")
+			Q("sheet").removeChild(Q("dialog"));
 	};
 	let child = A(node)(C("button"));
 	child.value = "cancel";
