@@ -320,6 +320,28 @@ const entryAdderNode = (faketable, nodegen, subnode = null, getindex = null, act
 	return node;
 };
 
+const pointCounterNode = () => {
+	let node = C("div");
+	node.id = ftprefix + "points";
+	// Keep these around if someone believes in an easy cheat, to have redundancy.
+	let child = A(node)(C("input"));
+	child.type = "hidden";
+	child.name = ftprefix + "points-attributes";
+	child.id = child.name;
+	child.value = 0;
+	child = A(node)(C("input"));
+	child.type = "hidden";
+	child.name = ftprefix + "points-other";
+	child.id = child.name;
+	child.value = 0;
+	child = A(node)(fakeTableNode("points-display", ftprefix));
+	child.innerHTML = "<div class='tr'><div class='td'>Attribute</div><div class='td' id='" + ftprefix + "points-attributes-display'>0</div></div><div class='tr'><div class='td'>Werte, Skills</div><div class='td' id='" + ftprefix + "points-other-display'>0</div></div>";
+	node.updateAttributes = () => {
+		;
+	};
+	return node;
+};
+
 const characterSubmitterNode = () => {
 	let node = C("div");
 	node.className = ftprefix + "submit";
