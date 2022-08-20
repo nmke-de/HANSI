@@ -55,6 +55,7 @@ const templateChooserNode = () => {
 		appendTemplateStats(Q("cc-stats"), cache.templates[ev.target.value]);
 		appendTemplateSkills(Q("cc-skills"), cache.templates[ev.target.value]);
 		Q(ftprefix + "points").updateAttributes();
+		Q(ftprefix + "points").updateOthers();
 	};
 	return node;
 };
@@ -154,14 +155,14 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].stats[index].value = (input_methods[1].value - input_methods[1].min);
 				storeLocally();
-			}
+			} else Q(ftprefix + "points").updateOthers();
 		};
 		input_methods[1].oninput = () => {
 			input_methods[0].value = parseInt(input_methods[1].value);
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].stats[index].value = (input_methods[1].value - input_methods[1].min);
 				storeLocally();
-			}
+			} else Q(ftprefix + "points").updateOthers();
 		};
 		node.attrup = () => {
 			let max_base = maxBase(attributes, index);
@@ -247,7 +248,10 @@ const skillNode = (name, checked = false, index = -1) => {
 	if (index > -1) child.onchange = () => {
 		cache.sheets[cache.selected.sheet].skills[index].value = child.checked;
 		storeLocally();
-	}
+	};
+	else child.onchange = () => {
+		Q(ftprefix + "points").updateOthers();
+	};
 	return node;
 };
 
@@ -343,7 +347,14 @@ const pointCounterNode = () => {
 		Q(ftprefix + "points-attributes-display").innerText = sum + "/" + cache.templates[Q("template-chooser").value].attribute_points;
 	};
 	node.updateOthers = () => {
-		console.log("updateOthers is WIP");
+		let refnode = Q(ftprefix + "stats");
+		let inode;
+		let sum = 0;
+		for (inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sum += (inode.lastChild.value - inode.lastChild.min);
+		refnode = Q(ftprefix + "skills");
+		for (inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sum += inode.lastChild.checked ? 15 : 0;
+		Q(ftprefix + "points-other").value = sum;
+		Q(ftprefix + "points-other-display").innerText = sum + "/" + cache.templates[Q("template-chooser").value].stat_points;
 	};
 	return node;
 };
