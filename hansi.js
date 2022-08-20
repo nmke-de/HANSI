@@ -356,7 +356,9 @@ const pointCounterNode = () => {
 		Q(ftprefix + "points-other").value = sum;
 		Q(ftprefix + "points-other-display").innerText = sum + "/" + cache.templates[Q("template-chooser").value].stat_points;
 	};
-	node.valid = () => parseInt(Q(ftprefix + "points-attributes").value) == cache.templates[Q("template-chooser").value].attribute_points && parseInt(Q(ftprefix + "points-other").value) == cache.templates[Q("template-chooser").value].stat_points;
+	node.valid = () => {
+		return parseInt(Q(ftprefix + "points-attributes").value) == cache.templates[Q("template-chooser").value].attribute_points && parseInt(Q(ftprefix + "points-other").value) == cache.templates[Q("template-chooser").value].stat_points;
+	};
 	return node;
 };
 
@@ -364,7 +366,7 @@ const characterSubmitterNode = () => {
 	let node = C("div");
 	node.className = ftprefix + "submit";
 	const close = (ev) => {
-		if (ev.target.value == "confirm" && Q(ftprefix + "name").value) {
+		if (ev.target.value == "confirm" && Q(ftprefix + "name").value && Q(ftprefix + "points").valid()) {
 			let sheet = {
 				name: Q(ftprefix + "name").value,
 				backstory: Q(ftprefix + "backstory").value,
@@ -425,7 +427,7 @@ const newCharacter = () => {
 	A(dialog)(templateChooserNode());
 	let form = A(dialog)(C("form"));
 	form.method = "dialog";
-	let _ = A(form);
+	let _ = A(dialog);
 
 	_(nameNode());
 	let child = _(C("div"));
