@@ -356,6 +356,7 @@ const pointCounterNode = () => {
 		Q(ftprefix + "points-other").value = sum;
 		Q(ftprefix + "points-other-display").innerText = sum + "/" + cache.templates[Q("template-chooser").value].stat_points;
 	};
+	node.valid = () => parseInt(Q(ftprefix + "points-attributes").value) == cache.templates[Q("template-chooser").value].attribute_points && parseInt(Q(ftprefix + "points-other").value) == cache.templates[Q("template-chooser").value].stat_points;
 	return node;
 };
 
