@@ -54,6 +54,7 @@ const templateChooserNode = () => {
 	node.onchange = (ev) => {
 		appendTemplateStats(Q("cc-stats"), cache.templates[ev.target.value]);
 		appendTemplateSkills(Q("cc-skills"), cache.templates[ev.target.value]);
+		Q(ftprefix + "points").updateAttributes();
 	};
 	return node;
 };
@@ -181,7 +182,7 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].attributes[index] = parseInt(input_methods[1].value);
 				storeLocally();
-			}
+			} else Q(ftprefix + "points").updateAttributes();
 		};
 		input_methods[1].oninput = () => {
 			input_methods[0].value = parseInt(input_methods[1].value) * 2;
@@ -189,7 +190,7 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].attributes[index] = parseInt(input_methods[1].value);
 				storeLocally();
-			}
+			} else Q(ftprefix + "points").updateAttributes();
 		};
 	}
 	return node;
@@ -337,7 +338,12 @@ const pointCounterNode = () => {
 	child = A(node)(fakeTableNode("points-display", ftprefix));
 	child.innerHTML = "<div class='tr'><div class='td'>Attribute</div><div class='td' id='" + ftprefix + "points-attributes-display'>0</div></div><div class='tr'><div class='td'>Werte, Skills</div><div class='td' id='" + ftprefix + "points-other-display'>0</div></div>";
 	node.updateAttributes = () => {
-		;
+		let sum = attributeNames.reduce((prev, current) => prev + parseInt(Q(ftprefix + codify(current)).value), 0);
+		Q(ftprefix + "points-attributes").value = sum;
+		Q(ftprefix + "points-attributes-display").innerText = sum + "/" + cache.templates[Q("template-chooser").value].attribute_points;
+	};
+	node.updateOthers = () => {
+		console.log("updateOthers is WIP");
 	};
 	return node;
 };
@@ -428,6 +434,7 @@ const newCharacter = () => {
 	child = _(fakeTableNode("inventory", ftprefix));
 	A(child)(h2Node("Inventar"));
 	A(child)(entryAdderNode(child, itemNode));
+	_(pointCounterNode());
 	_(characterSubmitterNode());
 	Q("sheet").insertBefore(dialog, Q("sheet").firstChild);
 	dialog.show();
