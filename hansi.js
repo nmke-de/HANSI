@@ -217,6 +217,8 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 				im.max = max_base + 50;
 				im.value = max_base + diff;
 			});
+			input_methods[0].nextSibling.innerText = Math.round(input_methods[1].value / 2);
+			input_methods[0].nextSibling.nextSibling.innerText = Math.round(input_methods[1].value / 5);
 		};
 	} else {
 		input_methods[0].step = 2;
