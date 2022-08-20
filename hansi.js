@@ -96,6 +96,39 @@ const fakeTableNode = (id, prefix = "") => {
 	return node;
 };
 
+const hitpointNode = () => {
+	let node = C("label");
+	node.classList.add("tr");
+	node.classList.add("hp");
+	node.id = "hp";
+	let child = A(node)(C("span"));
+	child.className = "td";
+	child.innerText = "Hitpoints";
+	child = A(node)(C("input"));
+	child.className = "td";
+	child.type = "number";
+	child.min = 0;
+	child.max = 20;
+	child.value = cache.sheets[cache.selected.sheet].hitpoints;
+	let input_methods = [];
+	input_methods.push(child);
+	child = A(node)(C("input"));
+	child.className = "td";
+	child.type = "range";
+	child.min = 0;
+	child.max = 20;
+	child.value = cache.sheets[cache.selected.sheet].hitpoints;
+	input_methods.push(child);
+	const updateHP = (ev) => {
+		const value = parseInt((ev.target == input_methods[0] ? input_methods[0] : input_methods[1]).value);
+		(ev.target == input_methods[0] ? input_methods[1] : input_methods[0]).value = value;
+		cache.sheets[cache.selected.sheet].hitpointNode = value;
+		storeLocally();
+	};
+	input_methods.forEach(im => im.oninput = updateHP);
+	return node;
+};
+
 const attributeNames = [
 	"Bildung",
 	"Charisma",
@@ -553,6 +586,8 @@ const fullUpdateSheet = () => {
 	child.id = "backstory";
 	A(child)(h2Node("Backstory"));
 	child.innerHTML += "<p>" + character.backstory.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
+	child = _(fakeTableNode("hitpoints-display"));
+	A(child)(hitpointNode());
 	child = _(fakeTableNode("attributes"));
 	A(child)(h2Node("Attribute"));
 	attributeNames.forEach((attr, index) => {
