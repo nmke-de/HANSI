@@ -140,6 +140,12 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 	child.value = min + value;
 	let input_methods = [];
 	input_methods.push(child);
+	child = A(node)(C("span"));
+	child.className = "td";
+	child.innerText = Math.round((min + value) / 2);
+	child = A(node)(C("span"));
+	child.className = "td";
+	child.innerText = Math.round((min + value) / 5);
 	child = A(node)(C("input"));
 	child.className = "td";
 	child.name = codify(name);
@@ -151,14 +157,20 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 	input_methods.push(child);
 	if (attributes[0] != name) {
 		input_methods[0].oninput = () => {
-			input_methods[1].value = parseInt(input_methods[0].value);
+			const value = parseInt(input_methods[0].value);
+			input_methods[1].value = value;
+			input_methods[0].nextSibling.innerText = Math.round(value / 2);
+			input_methods[0].nextSibling.nextSibling.innerText = Math.round(value / 5);
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].stats[index].value = (input_methods[1].value - input_methods[1].min);
 				storeLocally();
 			} else Q(ftprefix + "points").updateOthers();
 		};
 		input_methods[1].oninput = () => {
-			input_methods[0].value = parseInt(input_methods[1].value);
+			const value = parseInt(input_methods[1].value);
+			input_methods[0].value = value;
+			input_methods[0].nextSibling.innerText = Math.round(value / 2);
+			input_methods[0].nextSibling.nextSibling.innerText = Math.round(value / 5);
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].stats[index].value = (input_methods[1].value - input_methods[1].min);
 				storeLocally();
@@ -177,8 +189,13 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 		input_methods[0].step = 2;
 		input_methods[0].max = 100;
 		input_methods[0].value = value * 2;
+		input_methods[0].nextSibling.innerText = value;
+		input_methods[0].nextSibling.nextSibling.innerText = Math.round(value * 2 / 5);
 		input_methods[0].oninput = () => {
-			input_methods[1].value = parseInt(input_methods[0].value) / 2;
+			const value = parseInt(input_methods[0].value) / 2;
+			input_methods[1].value = value;
+			input_methods[0].nextSibling.innerText = value;
+			input_methods[0].nextSibling.nextSibling.innerText = Math.round(value * 2 / 5);
 			statGroup[codify(name)].forEach(statnode => statnode.attrup());
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].attributes[index] = parseInt(input_methods[1].value);
@@ -186,7 +203,10 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 			} else Q(ftprefix + "points").updateAttributes();
 		};
 		input_methods[1].oninput = () => {
-			input_methods[0].value = parseInt(input_methods[1].value) * 2;
+			const value = parseInt(input_methods[1].value);
+			input_methods[0].value = value * 2;
+			input_methods[0].nextSibling.innerText = value;
+			input_methods[0].nextSibling.nextSibling.innerText = Math.round(value * 2 / 5);
 			statGroup[codify(name)].forEach(statnode => statnode.attrup());
 			if (index > -1) {
 				cache.sheets[cache.selected.sheet].attributes[index] = parseInt(input_methods[1].value);
