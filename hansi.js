@@ -504,8 +504,8 @@ const newCharacter = () => {
 	child = _(fakeTableNode("inventory", ftprefix));
 	A(child)(h2Node("Inventar"));
 	A(child)(entryAdderNode(child, itemNode));
-	_(pointCounterNode());
-	_(characterSubmitterNode());
+	child = _(pointCounterNode());
+	A(child)(characterSubmitterNode());
 	Q("sheet").insertBefore(dialog, Q("sheet").firstChild);
 	dialog.show();
 };
