@@ -94,7 +94,7 @@ html {
 #dialog input, #sheet input{
 	width: 100%;
 }
-#dialog .name input, #sheet .name input{
+#dialog .name input, #sheet .name h1{
 	 display: block;
 	text-align: center;
 	font-weight: 900;
@@ -164,7 +164,7 @@ padding: 4%;
 #cc-attributes .geschick, #attributes .geschick{
 	background-color: var(--cGeschick);
 }
-#cc-attributes .intelligenz, #cc-attributes .intelligenz{
+#cc-attributes .intelligenz, #attributes .intelligenz{
 	background-color: var(--cIntelligenz);
 }
 #cc-attributes .staerke, #attributes .staerke{
