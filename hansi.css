@@ -79,7 +79,7 @@ html {
 	text-align: center;
 	border: dashed #424242 2pt;
 }
-#dialog{
+#dialog, #sheet{
 	width: 71%;
 	padding: 3%;
 	border: none;
@@ -91,17 +91,17 @@ html {
 	border: solid black 1pt;
 	background-color: #d4d4d4;
 }
-#dialog input{
+#dialog input, #sheet input{
 	width: 100%;
 }
-#dialog .name input{
+#dialog .name input, #sheet .name input{
 	 display: block;
 	text-align: center;
 	font-weight: 900;
 	border: none;
 	font-size: 30pt;
 }
-#dialog h2{
+#dialog h2, #sheet h2{
 	font-family: sans-serif;
 	font-size: 20pt;
 	font-weight: 700;
@@ -110,7 +110,7 @@ html {
 	width: 100%;
 	border-bottom: solid black 2pt;
 }
-#dialog textarea{
+#dialog textarea, #sheet textarea{
 	width: 100%;
 	height: 100pt;
 	margin-bottom: 20pt;
@@ -305,7 +305,6 @@ padding: 4%;
 #cc-skills, #skills {
 	display: block;
 	margin: auto;
-	border: solid red 1pt;
 }
 #cc-inventory .tr,  #cc-skills .tr, #inventory .tr,  #skills .tr{
 	display: table-row;
