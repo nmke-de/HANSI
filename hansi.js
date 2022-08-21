@@ -617,7 +617,7 @@ const fullUpdateSheet = () => {
 	child = _(C("div"));
 	A(child)(h2Node("Notizen"));
 	child = A(child)(textareaNode("notes", "Hier kommen deine Notizen hin.", character.notes));
-	child.cols = 30;
+	child.cols = 60;
 	child.rows = 5;
 	child.oninput = () => {
 		character.notes = child.value;

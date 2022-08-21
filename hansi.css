@@ -55,9 +55,13 @@ textarea {
 .table {
 	display: table;
 	width: 100%;
+	table-layout: fixed;
+	margin-left: 0;
+	margin-right: 0;
 }
 .tr {
 	display: table-row;
+	width: 100%;
 }
 .td {
 	display: table-cell;
@@ -114,7 +118,11 @@ input[type="email"]:invalid {
 	clear: left;
 }
 	/* allows a quick shortcut for floating elements left and right while avoiding the “float quirk” problem */
-	
+
+.cc-backstory, .backstory, .notes {
+	width: 100%;
+}
+
 sub, sup { 
 	line-height: 0;
 }
@@ -125,6 +133,11 @@ sub, sup {
 
 #dialog {
 	z-index: 1;
+	margin: 5px 25%;
+}
+
+#sheet {
+	padding: 5px 25% 40px;
 }
 
 nav {
