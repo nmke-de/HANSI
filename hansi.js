@@ -591,8 +591,8 @@ const fullUpdateSheet = () => {
 	child.innerHTML += "<p>" + character.backstory.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
 	child = _(fakeTableNode("hitpoints-display"));
 	A(child)(hitpointNode());
-	child = _(fakeTableNode("attributes"));
 	A(child)(h2Node("Attribute"));
+	child = _(fakeTableNode("attributes"));
 	attributeNames.forEach((attr, index) => {
 		A(child)(slide50Node(attr, [attr], character.attributes[index], 0, index));
 		statGroup[codify(attr)] = [];
