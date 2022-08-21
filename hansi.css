@@ -147,6 +147,13 @@ sub, sup {
 	padding: 5px 25% 40px;
 }
 
+#upload {
+	z-index: 2;
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
 nav {
 	position: fixed;
 	background-position: fixed;

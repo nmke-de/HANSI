@@ -520,6 +520,7 @@ const download = () => {
 
 const upload = () => {
 	let node = C("dialog");
+	node.id = "upload";
 	let child = A(node)(C("form"));
 	child.method = "dialog";
 	const _ = A(child);
