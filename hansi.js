@@ -174,10 +174,10 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 	let input_methods = [];
 	input_methods.push(child);
 	child = A(node)(C("span"));
-	child.className = "td";
+	child.className = "td medium";
 	child.innerText = Math.round((min + value) / 2);
 	child = A(node)(C("span"));
-	child.className = "td";
+	child.className = "td extreme";
 	child.innerText = Math.round((min + value) / 5);
 	child = A(node)(C("input"));
 	child.className = "td";
