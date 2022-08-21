@@ -22,7 +22,7 @@ window.addEventListener("load", () => {
 		"empty.json",
 		"new-east.json",
 		"obstwatch.json",
-		"GenreUndefined.json"
+		"butterfly-report.json"
 	].forEach((filename, i) => {
 		fetch("templates/" + filename).then(response => response.json()).then(text => cache.templates[i] = text);
 	});
