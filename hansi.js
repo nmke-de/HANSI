@@ -367,10 +367,10 @@ const itemNode = (name = "", index = -1, count = 1, description = "") => {
 const entryAdderNode = (faketable, nodegen, subnode = null, getindex = null, action = () => undefined) => {
 	// TODO give more options and more arguments to nodegen
 	let node = C("div");
-	node.className = "append-button-div tr";
+	node.className = "append-button-div";
 	if (subnode) A(node)(subnode).className = "td";
 	let child = A(node)(C("button"));
-	child.className = "append-button td";
+	child.className = "append-button";
 	child.innerText = "+";
 	child.type = "button";
 	child.onclick = () => {
@@ -489,8 +489,8 @@ const newCharacter = () => {
 	let child = _(C("div"));
 	A(child)(h2Node("Backstory"));
 	A(child)(textareaNode(ftprefix + "backstory", "Backstory"));
-	child = _(fakeTableNode("attributes", ftprefix));
 	A(child)(h2Node("Attribute"));
+	child = _(fakeTableNode("attributes", ftprefix));
 	attributeNames.forEach(attr => {
 		A(child)(slide50Node(attr));
 		statGroup[codify(attr)] = [];

@@ -1,163 +1,352 @@
-* { 
-	box-sizing: border-box;
+*{
+	padding: 0%;
+	margin: 0%;
 }
-html, body {
-	min-height: 100%;
-	background: #fff;
-	color: #000;
-    text-align: center;
+:root{
+  --cBildung: #f3f3f3;
+  --cCharisma: #34a853;
+  --cGeschick: #ff9900;
+  --cIntelligenz: #4a86e8;
+	--cStaerke: #ea4335;
+	--cGlueck: #ebc950;
 }
-	/* sets the body height of the browser, so that backgrounds and div heights work correctly. Color and background will almost certainly be altered; they are just placeholders */
-	
-body {
-	font-size: 1.4rem;
-	text-rendering: optimizeLegibility;
+html {
+	/*background-image: linear-gradient(to top, #5a5963 0%, #81808c 70%);
+	background-repeat: no-repeat;*/
 }
-	/* sets the base font size for the document; turns on kerning pairs and ligatures */
-	
-body, ul, ol, dl {
-	margin: 0;
+.left {
+	width: 20%;
+  height: 100%;
+  position: fixed;
+   right: 0px;
+   top: 0px;
+   border-left: solid black 3pt;
+   padding: 1%;
+   z-index: 6;
+	 background-color: white;
+	 box-shadow: 0 0 10pt black;
 }
-article, aside, audio, 
-footer, header, nav, section, video {
-	display: block; 
-	}
-	
-	/* ensures that older browsers will display HTML5 elements correctly */
-	
-h1 {
-	font-size: 2.8rem;
+.left h4{
+	font-family: sans-serif;
+	font-size: 20pt;
+	margin: 1%;
+	margin-bottom: 10pt;
 }
-	/* begins to set up font sizes relative to base rem – h1 has been used as an example */
-h1 input {
-	border: 0;
-	width: 100%;
-	font: inherit;
+.left button{
+	display: block;
+	border: none;
+	background: none;
+	transition: 0.3s;
+	transition: font-size 0.5s;
+	font-size: 15pt;
+	margin: 8pt;
+	font-weight: 300;
+	padding: 2pt;
+	cursor: pointer;
+}
+.left button:hover {
+	text-shadow: 0 0 10pt #424242;
+	transition: 0.3s;
+	transition: font-size 0.5s;
+	font-size: 16.5pt;
+}
+.left button::before{
+	content: "▶ ";
+}
+.disclaimer{
+	font-family: sans-serif;
+	font-size: 13pt;
+	font-style: italic;
+	color: #424242;
+	font-weight: 200;
+	padding: 5pt;
+	padding-top: 10pt;
+	padding-bottom: 10pt;
+	margin: 10pt;
 	text-align: center;
+	border: dashed #424242 2pt;
 }
-	
-p { 
-	-ms-word-break: break-all;
-	word-break: break-all;
-	word-break: break-word;
-	-moz-hyphens: auto;
-	-webkit-hyphens: auto;
-	-ms-hyphens: auto;
-	hyphens: auto;
-} 
-	/* sets hyphenation by default on paragraphs */
-	
-textarea { 
+#dialog{
+	width: 71%;
+	padding: 3%;
+	border: none;
+}
+#template-chooser{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	border: solid black 1pt;
+	background-color: #d4d4d4;
+}
+#dialog input{
+	width: 100%;
+}
+#dialog .name input{
+	 display: block;
+	text-align: center;
+	font-weight: 900;
+	border: none;
+	font-size: 30pt;
+}
+#dialog h2{
+	font-family: sans-serif;
+	font-size: 20pt;
+	font-weight: 700;
+	margin-bottom: 20pt;
+	padding: 0%;
+	width: 100%;
+	border-bottom: solid black 2pt;
+}
+#dialog textarea{
+	width: 100%;
+	height: 100pt;
+	margin-bottom: 20pt;
 	resize: vertical;
 }
- /* changes textarea resizing from "both" (UA default) to vertical only */
-
-.table {
-	display: table;
-	width: 100%;
-	table-layout: fixed;
-	margin-left: 0;
-	margin-right: 0;
+#cc-attributes{
+	grid-gap: 20px 40px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin-bottom: 20pt;
 }
-.tr {
+#cc-attributes div{
+display: flex;
+justify-content: center;
+align-content: center;
+flex-direction: column;
+text-align: center;
+height: 150pt;
+border: solid black 3pt;
+align: center;
+transition: 1s;
+text-decoration: none;
+padding: 4%;
+}
+#cc-attributes div label{
+	font-family: sans-serif;
+	font-size: 18pt;
+	font-weight: 300;
+	margin-bottom: 20pt;
+	padding: 0%;
+	width: 100%;
+}
+#cc-attributes div input{
+	font-family: sans-serif;
+	text-align: center;
+	padding: 0%;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+}
+#cc-attributes div span{
+	display: inline-block;
+	width: 40%;
+}
+#cc-attributes .bildung {
+	background-color: var(--cBildung);
+}
+#cc-attributes .charisma {
+	background-color: var(--cCharisma);
+}
+#cc-attributes .geschick {
+	background-color: var(--cGeschick);
+}
+#cc-attributes .intelligenz {
+	background-color: var(--cIntelligenz);
+}
+#cc-attributes .staerke {
+	background-color: var(--cStaerke);
+}
+#cc-attributes .glueck {
+	background-color: var(--cGlueck);
+}
+#cc-stats label{
+	font-size: 14pt;
+	font-family: sans-serif;
+	weight: 300;
+}
+#cc-stats label::after{
+	border: solid black 1pt;
+	margin: 2pt;
+	font-size: 9pt;
+	padding: 1pt;
+	padding-bottom: 0pt;
+}
+#cc-stats .bildung label::after{
+	content: "BI";
+	background-color: var(--cBildung);
+}
+#cc-stats .charisma label::after{
+	content: "CA";
+	background-color: var(--cCharisma);
+}
+#cc-stats .geschick label::after{
+	content: "GE";
+	background-color: var(--cGeschick);
+}
+#cc-stats .intelligenz label::after{
+	content: "IN";
+	background-color: var(--cIntelligenz);
+}
+#cc-stats .staerke label::after{
+	content: "ST";
+	background-color: var(--cStaerke);
+}
+#cc-stats .glueck label::after{
+	content: "GL";
+	background-color: var(--cGlueck);
+}
+.append-button-div{
+	border: solid black 2pt;
+	padding: 10pt;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10pt;
+	display: block;
+}
+.append-button-div input{
+	font-size: 14pt;
+	font-family: sans-serif;
+	padding: 2pt;
+}
+.append-button-div select{
+	font-size: 10pt;
+	font-family: sans-serif;
+	padding: 2pt;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	width: auto;
+	margin-top: 2pt;
+}
+.append-button{
+	display: block;
+	font-size: 30pt;
+	weight: 700;
+	margin-left: auto;
+	margin-right: auto;
+	border: none;
+	background: none;
+	cursor: pointer;
+	transition: 0.3s;
+}
+.append-button:hover{
+	text-shadow: 0 0 10pt #424242;
+	transition: 0.3s;
+}
+#cc-points{
+	width: 40%;
+	margin-left: 20%;
+	margin-bottom: 1%;
+  height: auto;
+  position: fixed;
+   left: 0px;
+   bottom: 0px;
+   border: solid black 3pt;
+   padding: 0pt;
+   z-index: 4;
+	 background-color: white;
+	 box-shadow: 0 0 10pt black;
+}
+.cc-submit{
+	margin: 0%;
+	width: 50%;
+  padding: 2pt;
+}
+.cc-submit button{
+	display: block;
+	border: none;
+	background: none;
+	transition: 0.3s;
+	transition: font-size 0.5s;
+	font-size: 14pt;
+	font-weight: 300;
+	padding: 2pt;
+	padding-left: 30pt;
+	cursor: pointer;
+}
+.cc-submit button:hover {
+	text-shadow: 0 0 10pt #424242;
+	transition: 0.3s;
+}
+.cc-submit button::before{
+	content: "▶ ";
+}
+#cc-points-display{
+	margin: 0%;
+	width: 50%;
+  padding: 2pt;
+	font-weight: 300;
+}
+#cc-points-display .tr{
+	font-size: 14pt;
+	font-family: sans-serif;
+	display: table-row;
+
+}
+#cc-points-display .td {
+	display: table-cell;
+	padding-right: 20pt;
+}
+#cc-skills {
+	display: block;
+	margin: auto;
+	border: solid red 1pt;
+}
+#cc-inventory .tr,  #cc-skills .tr{
 	display: table-row;
 	width: 100%;
+	padding: 2pt;
+
 }
-.td {
+#cc-inventory .td,  #cc-skills .td{
 	display: table-cell;
 }
-
-.table h2 {
-	display: table-caption;
+#cc-skills label{
+	font-size: 14pt;
+	font-family: sans-serif;
 }
 
-table { border-collapse: collapse; }
-td {
-	padding: .5rem;
+
+
+
+
+/*Dinge, die nicht im Hauptding liegen*/
+#upload{
+	width: 40%;
+	margin-left: 20%;
+	margin-top: 10%;
+	display: block;
+	vertical-align: middle;
+	padding: 20pt;
+	box-shadow: 0 0 10pt black;
+	background-color: white;
 }
-	/* causes tables to actually look like tables */
-	
-img { 
+#upload input{
+	margin: auto;
+	margin-top: 10%;
+	display: block;
+}
+#upload button{
+	margin: auto;
+	margin-top: 10%;
+	display: block;
 	border: none;
-	max-width: 100%;
+	background: none;
+	transition: 0.3s;
+	transition: font-size 0.5s;
+	font-size: 15pt;
+	font-weight: 300;
+	padding: 2pt;
+	cursor: pointer;
 }
-	/* removes outlines from linked images (for older browsers and IE), sets up images for responsive design layout */
-	
-input[type="submit"]::-moz-focus-inner, 
-	input[type="button"]::-moz-focus-inner {
-		border : 0px;
-	}
-	/* removes the inner border effect from focused buttons for form elements in Firefox */
-	
-input[type="search"] { 
-	-webkit-appearance: textfield;
-} 
-input[type="submit"] { 
-	-webkit-appearance:none;
+#upload button:hover {
+	text-shadow: 0 0 10pt #424242;
+	transition: 0.3s;
+	transition: font-size 0.5s;
+	font-size: 16.5pt;
 }
-	/* removes the OS X appearance from HTML5 search inputs and submit buttons when viewed in Safari */
-	
-input:required:after {
-	color: #f00;
-	content: " *";
-}
-	/* sets up required form fields with the conventional following red asterix */
-input[type="email"]:invalid { 
-	background: #f00;
-}
-	/* causes a visual alert in browsers that do client-side checking of HTML5 email field – this may already be the default in some browsers. */
-	
-.right { 
-	float: right;
-	margin-left: 2rem;
-	clear: right;
-}
-.left { 
-	float: left;
-	margin-right: 2rem;
-	clear: left;
-}
-	/* allows a quick shortcut for floating elements left and right while avoiding the “float quirk” problem */
-
-.cc-backstory, .backstory, .notes {
-	width: 100%;
-}
-
-.bildung {}
-.charisma {}
-.geschick {}
-.intelligenz {}
-.staerke {}
-.glueck {}
-
-sub, sup { 
-	line-height: 0;
-}
-
-#hp {
-    padding: 2vh;
-}
-
-#dialog {
-	z-index: 1;
-	margin: 5px 25%;
-}
-
-#sheet {
-	padding: 5px 25% 40px;
-}
-
-#upload {
-	z-index: 2;
-	position: fixed;
-	top: 50%;
-	transform: translateY(-50%);
-}
-
-nav {
-	position: fixed;
-	background-position: fixed;
-	opacity: 1.0;
-	/*Border is preliminary*/
-	border: 1px solid #000;
+#upload button::before{
+	content: "▶ ";
 }
