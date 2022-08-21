@@ -53,6 +53,19 @@ html {
 .left button::before{
 	content: "▶ ";
 }
+#character-list {
+	font-size: 13pt;
+	margin-left: 13pt;
+}
+#character-list li{
+	font-size: 13pt;
+	font-family: sans-serif;
+	font-weight: 300;
+}
+#character-list li button{
+	font-size: 13pt;
+	border: solid black 1pt;
+}
 .disclaimer{
 	font-family: sans-serif;
 	font-size: 13pt;
