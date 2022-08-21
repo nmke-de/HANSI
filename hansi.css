@@ -123,6 +123,13 @@ input[type="email"]:invalid {
 	width: 100%;
 }
 
+.bildung {}
+.charisma {}
+.geschick {}
+.intelligenz {}
+.staerke {}
+.glueck {}
+
 sub, sup { 
 	line-height: 0;
 }
@@ -143,6 +150,7 @@ sub, sup {
 nav {
 	position: fixed;
 	background-position: fixed;
+	opacity: 1.0;
 	/*Border is preliminary*/
 	border: 1px solid #000;
 }
