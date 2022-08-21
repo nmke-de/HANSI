@@ -1,38 +1,43 @@
-*{
+* {
 	padding: 0%;
 	margin: 0%;
 }
-:root{
-  --cBildung: #f3f3f3;
-  --cCharisma: #34a853;
-  --cGeschick: #ff9900;
-  --cIntelligenz: #4a86e8;
+
+:root {
+	--cBildung: #f3f3f3;
+	--cCharisma: #34a853;
+	--cGeschick: #ff9900;
+	--cIntelligenz: #4a86e8;
 	--cStaerke: #ea4335;
 	--cGlueck: #ebc950;
 }
+
 html {
 	/*background-image: linear-gradient(to top, #5a5963 0%, #81808c 70%);
 	background-repeat: no-repeat;*/
 }
+
 .left {
 	width: 20%;
-  height: 100%;
-  position: fixed;
-   right: 0px;
-   top: 0px;
-   border-left: solid black 3pt;
-   padding: 1%;
-   z-index: 6;
-	 background-color: white;
-	 box-shadow: 0 0 10pt black;
+	height: 100%;
+	position: fixed;
+	right: 0px;
+	top: 0px;
+	border-left: solid black 3pt;
+	padding: 1%;
+	z-index: 6;
+	background-color: white;
+	box-shadow: 0 0 10pt black;
 }
-.left h4{
+
+.left h4 {
 	font-family: sans-serif;
 	font-size: 20pt;
 	margin: 1%;
 	margin-bottom: 10pt;
 }
-.left button{
+
+.left button {
 	display: block;
 	border: none;
 	background: none;
@@ -44,29 +49,35 @@ html {
 	padding: 2pt;
 	cursor: pointer;
 }
+
 .left button:hover {
 	text-shadow: 0 0 10pt #424242;
 	transition: 0.3s;
 	transition: font-size 0.5s;
 	font-size: 16.5pt;
 }
-.left button::before{
+
+.left button::before {
 	content: "▶ ";
 }
+
 #character-list {
 	font-size: 13pt;
 	margin-left: 13pt;
 }
-#character-list li{
+
+#character-list li {
 	font-size: 13pt;
 	font-family: sans-serif;
 	font-weight: 300;
 }
-#character-list li button{
+
+#character-list li button {
 	font-size: 13pt;
 	border: solid black 1pt;
 }
-.disclaimer{
+
+.disclaimer {
 	font-family: sans-serif;
 	font-size: 13pt;
 	font-style: italic;
@@ -79,29 +90,38 @@ html {
 	text-align: center;
 	border: dashed #424242 2pt;
 }
-#dialog, #sheet{
+
+#dialog,
+#sheet {
 	width: 71%;
 	padding: 3%;
 	border: none;
 }
-#template-chooser{
+
+#template-chooser {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	border: solid black 1pt;
 	background-color: #d4d4d4;
 }
-#dialog input, #sheet input{
+
+#dialog input,
+#sheet input {
 	width: 100%;
 }
-#dialog .name input, #sheet .name h1{
-	 display: block;
+
+#dialog .name input,
+#sheet .name h1 {
+	display: block;
 	text-align: center;
 	font-weight: 900;
 	border: none;
 	font-size: 30pt;
 }
-#dialog h2, #sheet h2{
+
+#dialog h2,
+#sheet h2 {
 	font-family: sans-serif;
 	font-size: 20pt;
 	font-weight: 700;
@@ -110,32 +130,40 @@ html {
 	width: 100%;
 	border-bottom: solid black 2pt;
 }
-#dialog textarea, #sheet textarea{
+
+#dialog textarea,
+#sheet textarea {
 	width: 100%;
 	height: 100pt;
 	margin-bottom: 20pt;
 	resize: vertical;
 }
-#cc-attributes, #attributes{
+
+#cc-attributes,
+#attributes {
 	grid-gap: 20px 40px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
 	margin-bottom: 20pt;
 }
-#cc-attributes div, #attributes div{
-display: flex;
-justify-content: center;
-align-content: center;
-flex-direction: column;
-text-align: center;
-height: 150pt;
-border: solid black 3pt;
-align: center;
-transition: 1s;
-text-decoration: none;
-padding: 4%;
+
+#cc-attributes div,
+#attributes div {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: column;
+	text-align: center;
+	height: 150pt;
+	border: solid black 3pt;
+	align: center;
+	transition: 1s;
+	text-decoration: none;
+	padding: 4%;
 }
-#cc-attributes div label, #attributes div label{
+
+#cc-attributes div label,
+#attributes div label {
 	font-family: sans-serif;
 	font-size: 18pt;
 	font-weight: 300;
@@ -143,7 +171,9 @@ padding: 4%;
 	padding: 0%;
 	width: 100%;
 }
-#cc-attributes div input, #attributes div input{
+
+#cc-attributes div input,
+#attributes div input {
 	font-family: sans-serif;
 	text-align: center;
 	padding: 0%;
@@ -151,65 +181,96 @@ padding: 4%;
 	margin-left: auto;
 	margin-right: auto;
 }
-#cc-attributes div span, #attributes div span{
+
+#cc-attributes div span,
+#attributes div span {
 	display: inline-block;
 	width: 40%;
 }
-#cc-attributes .bildung, #attributes .bildung{
+
+#cc-attributes .bildung,
+#attributes .bildung {
 	background-color: var(--cBildung);
 }
-#cc-attributes .charisma, #attributes .charisma{
+
+#cc-attributes .charisma,
+#attributes .charisma {
 	background-color: var(--cCharisma);
 }
-#cc-attributes .geschick, #attributes .geschick{
+
+#cc-attributes .geschick,
+#attributes .geschick {
 	background-color: var(--cGeschick);
 }
-#cc-attributes .intelligenz, #attributes .intelligenz{
+
+#cc-attributes .intelligenz,
+#attributes .intelligenz {
 	background-color: var(--cIntelligenz);
 }
-#cc-attributes .staerke, #attributes .staerke{
+
+#cc-attributes .staerke,
+#attributes .staerke {
 	background-color: var(--cStaerke);
 }
-#cc-attributes .glueck, #attributes .glueck {
+
+#cc-attributes .glueck,
+#attributes .glueck {
 	background-color: var(--cGlueck);
 }
-#cc-stats label, #stats label{
+
+#cc-stats label,
+#stats label {
 	font-size: 14pt;
 	font-family: sans-serif;
 	weight: 300;
 }
-#cc-stats label::after, #stats label::after{
+
+#cc-stats label::after,
+#stats label::after {
 	border: solid black 1pt;
 	margin: 2pt;
 	font-size: 9pt;
 	padding: 1pt;
 	padding-bottom: 0pt;
 }
-#cc-stats .bildung label::after, #stats .bildung label::after{
+
+#cc-stats .bildung label::after,
+#stats .bildung label::after {
 	content: "BI";
 	background-color: var(--cBildung);
 }
-#cc-stats .charisma label::after, #stats .charisma label::after{
+
+#cc-stats .charisma label::after,
+#stats .charisma label::after {
 	content: "CA";
 	background-color: var(--cCharisma);
 }
-#cc-stats .geschick label::after, #stats .geschick label::after{
+
+#cc-stats .geschick label::after,
+#stats .geschick label::after {
 	content: "GE";
 	background-color: var(--cGeschick);
 }
-#cc-stats .intelligenz label::after, #stats .intelligenz label::after{
+
+#cc-stats .intelligenz label::after,
+#stats .intelligenz label::after {
 	content: "IN";
 	background-color: var(--cIntelligenz);
 }
-#cc-stats .staerke label::after, #stats .staerke label::after{
+
+#cc-stats .staerke label::after,
+#stats .staerke label::after {
 	content: "ST";
 	background-color: var(--cStaerke);
 }
-#cc-stats .glueck label::after, #stats .glueck label::after{
+
+#cc-stats .glueck label::after,
+#stats .glueck label::after {
 	content: "GL";
 	background-color: var(--cGlueck);
 }
-.append-button-div{
+
+.append-button-div {
 	border: solid black 2pt;
 	padding: 10pt;
 	width: 70%;
@@ -218,12 +279,14 @@ padding: 4%;
 	margin-bottom: 10pt;
 	display: block;
 }
-.append-button-div input{
+
+.append-button-div input {
 	font-size: 14pt;
 	font-family: sans-serif;
 	padding: 2pt;
 }
-.append-button-div select{
+
+.append-button-div select {
 	font-size: 10pt;
 	font-family: sans-serif;
 	padding: 2pt;
@@ -233,7 +296,8 @@ padding: 4%;
 	width: auto;
 	margin-top: 2pt;
 }
-.append-button{
+
+.append-button {
 	display: block;
 	font-size: 30pt;
 	weight: 700;
@@ -244,30 +308,37 @@ padding: 4%;
 	cursor: pointer;
 	transition: 0.3s;
 }
-.append-button:hover{
+
+.append-button:hover {
 	text-shadow: 0 0 10pt #424242;
 	transition: 0.3s;
 }
-#cc-points, #points{
+
+#cc-points,
+#points {
 	width: 40%;
 	margin-left: 20%;
 	margin-bottom: 1%;
-  height: auto;
-  position: fixed;
-   left: 0px;
-   bottom: 0px;
-   border: solid black 3pt;
-   padding: 0pt;
-   z-index: 4;
-	 background-color: white;
-	 box-shadow: 0 0 10pt black;
+	height: auto;
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	border: solid black 3pt;
+	padding: 0pt;
+	z-index: 4;
+	background-color: white;
+	box-shadow: 0 0 10pt black;
 }
-.cc-submit, .submit{
+
+.cc-submit,
+.submit {
 	margin: 0%;
 	width: 50%;
-  padding: 2pt;
+	padding: 2pt;
 }
-.cc-submit button, .submit button{
+
+.cc-submit button,
+.submit button {
 	display: block;
 	border: none;
 	background: none;
@@ -279,43 +350,65 @@ padding: 4%;
 	padding-left: 30pt;
 	cursor: pointer;
 }
-.cc-submit button:hover, .submit button:hover {
+
+.cc-submit button:hover,
+.submit button:hover {
 	text-shadow: 0 0 10pt #424242;
 	transition: 0.3s;
 }
-.cc-submit button::before, .submit button::before{
+
+.cc-submit button::before,
+.submit button::before {
 	content: "▶ ";
 }
-#cc-points-display, #points-display{
+
+#cc-points-display,
+#points-display {
 	margin: 0%;
 	width: 50%;
-  padding: 2pt;
+	padding: 2pt;
 	font-weight: 300;
 }
-#cc-points-display .tr, #points-display .tr{
+
+#cc-points-display .tr,
+#points-display .tr {
 	font-size: 14pt;
 	font-family: sans-serif;
 	display: table-row;
 
 }
-#cc-points-display .td, #points-display .td {
+
+#cc-points-display .td,
+#points-display .td {
 	display: table-cell;
 	padding-right: 20pt;
 }
-#cc-skills, #skills {
+
+#cc-skills,
+#skills {
 	display: block;
 	margin: auto;
 }
-#cc-inventory .tr,  #cc-skills .tr, #inventory .tr,  #skills .tr{
+
+#cc-inventory .tr,
+#cc-skills .tr,
+#inventory .tr,
+#skills .tr {
 	display: table-row;
 	width: 100%;
 	padding: 2pt;
 
 }
-#cc-inventory .td,  #cc-skills .td, #inventory .td,  #skills .td{
+
+#cc-inventory .td,
+#cc-skills .td,
+#inventory .td,
+#skills .td {
 	display: table-cell;
 }
-#cc-skills label, #skills label{
+
+#cc-skills label,
+#skills label {
 	font-size: 14pt;
 	font-family: sans-serif;
 }
@@ -325,7 +418,7 @@ padding: 4%;
 
 
 /*Dinge, die nicht im Hauptding liegen*/
-#upload{
+#upload {
 	width: 40%;
 	margin-left: 20%;
 	margin-top: 10%;
@@ -335,12 +428,14 @@ padding: 4%;
 	box-shadow: 0 0 10pt black;
 	background-color: white;
 }
-#upload input{
+
+#upload input {
 	margin: auto;
 	margin-top: 10%;
 	display: block;
 }
-#upload button{
+
+#upload button {
 	margin: auto;
 	margin-top: 10%;
 	display: block;
@@ -353,12 +448,14 @@ padding: 4%;
 	padding: 2pt;
 	cursor: pointer;
 }
+
 #upload button:hover {
 	text-shadow: 0 0 10pt #424242;
 	transition: 0.3s;
 	transition: font-size 0.5s;
 	font-size: 16.5pt;
 }
-#upload button::before{
+
+#upload button::before {
 	content: "▶ ";
 }
