@@ -489,7 +489,7 @@ const newCharacter = () => {
 	let child = _(C("div"));
 	A(child)(h2Node("Backstory"));
 	A(child)(textareaNode(ftprefix + "backstory", "Backstory"));
-	A(child)(h2Node("Attribute"));
+	_(h2Node("Attribute"));
 	child = _(fakeTableNode("attributes", ftprefix));
 	attributeNames.forEach(attr => {
 		A(child)(slide50Node(attr));
@@ -591,7 +591,7 @@ const fullUpdateSheet = () => {
 	child.innerHTML += "<p>" + character.backstory.replace(/\n\n/g, "</p><p>").replace(/\n/g, "<br>") + "</p>";
 	child = _(fakeTableNode("hitpoints-display"));
 	A(child)(hitpointNode());
-	A(child)(h2Node("Attribute"));
+	_(h2Node("Attribute"));
 	child = _(fakeTableNode("attributes"));
 	attributeNames.forEach((attr, index) => {
 		A(child)(slide50Node(attr, [attr], character.attributes[index], 0, index));
