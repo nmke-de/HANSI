@@ -87,7 +87,6 @@ html {
 	font-weight: 900;
 	border: none;
 	font-size: 30pt;
-	margin: 3opt;
 }
 #dialog h2{
 	font-family: sans-serif;
@@ -104,13 +103,13 @@ html {
 	margin-bottom: 20pt;
 	resize: vertical;
 }
-#cc-attributes{
+#cc-attributes, #attributes{
 	grid-gap: 20px 40px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 	margin-bottom: 20pt;
 }
-#cc-attributes div{
+#cc-attributes div, #attributes div{
 display: flex;
 justify-content: center;
 align-content: center;
@@ -123,7 +122,7 @@ transition: 1s;
 text-decoration: none;
 padding: 4%;
 }
-#cc-attributes div label{
+#cc-attributes div label, #attributes div label{
 	font-family: sans-serif;
 	font-size: 18pt;
 	font-weight: 300;
@@ -131,7 +130,7 @@ padding: 4%;
 	padding: 0%;
 	width: 100%;
 }
-#cc-attributes div input{
+#cc-attributes div input, #attributes div input{
 	font-family: sans-serif;
 	text-align: center;
 	padding: 0%;
@@ -139,61 +138,61 @@ padding: 4%;
 	margin-left: auto;
 	margin-right: auto;
 }
-#cc-attributes div span{
+#cc-attributes div span, #attributes div span{
 	display: inline-block;
 	width: 40%;
 }
-#cc-attributes .bildung {
+#cc-attributes .bildung, #attributes .bildung{
 	background-color: var(--cBildung);
 }
-#cc-attributes .charisma {
+#cc-attributes .charisma, #attributes .charisma{
 	background-color: var(--cCharisma);
 }
-#cc-attributes .geschick {
+#cc-attributes .geschick, #attributes .geschick{
 	background-color: var(--cGeschick);
 }
-#cc-attributes .intelligenz {
+#cc-attributes .intelligenz, #cc-attributes .intelligenz{
 	background-color: var(--cIntelligenz);
 }
-#cc-attributes .staerke {
+#cc-attributes .staerke, #attributes .staerke{
 	background-color: var(--cStaerke);
 }
-#cc-attributes .glueck {
+#cc-attributes .glueck, #attributes .glueck {
 	background-color: var(--cGlueck);
 }
-#cc-stats label{
+#cc-stats label, #stats label{
 	font-size: 14pt;
 	font-family: sans-serif;
 	weight: 300;
 }
-#cc-stats label::after{
+#cc-stats label::after, #stats label::after{
 	border: solid black 1pt;
 	margin: 2pt;
 	font-size: 9pt;
 	padding: 1pt;
 	padding-bottom: 0pt;
 }
-#cc-stats .bildung label::after{
+#cc-stats .bildung label::after, #stats .bildung label::after{
 	content: "BI";
 	background-color: var(--cBildung);
 }
-#cc-stats .charisma label::after{
+#cc-stats .charisma label::after, #stats .charisma label::after{
 	content: "CA";
 	background-color: var(--cCharisma);
 }
-#cc-stats .geschick label::after{
+#cc-stats .geschick label::after, #stats .geschick label::after{
 	content: "GE";
 	background-color: var(--cGeschick);
 }
-#cc-stats .intelligenz label::after{
+#cc-stats .intelligenz label::after, #stats .intelligenz label::after{
 	content: "IN";
 	background-color: var(--cIntelligenz);
 }
-#cc-stats .staerke label::after{
+#cc-stats .staerke label::after, #stats .staerke label::after{
 	content: "ST";
 	background-color: var(--cStaerke);
 }
-#cc-stats .glueck label::after{
+#cc-stats .glueck label::after, #stats .glueck label::after{
 	content: "GL";
 	background-color: var(--cGlueck);
 }
@@ -236,7 +235,7 @@ padding: 4%;
 	text-shadow: 0 0 10pt #424242;
 	transition: 0.3s;
 }
-#cc-points{
+#cc-points, #points{
 	width: 40%;
 	margin-left: 20%;
 	margin-bottom: 1%;
@@ -250,12 +249,12 @@ padding: 4%;
 	 background-color: white;
 	 box-shadow: 0 0 10pt black;
 }
-.cc-submit{
+.cc-submit, .submit{
 	margin: 0%;
 	width: 50%;
   padding: 2pt;
 }
-.cc-submit button{
+.cc-submit button, .submit button{
 	display: block;
 	border: none;
 	background: none;
@@ -267,44 +266,44 @@ padding: 4%;
 	padding-left: 30pt;
 	cursor: pointer;
 }
-.cc-submit button:hover {
+.cc-submit button:hover, .submit button:hover {
 	text-shadow: 0 0 10pt #424242;
 	transition: 0.3s;
 }
-.cc-submit button::before{
+.cc-submit button::before, .submit button::before{
 	content: "▶ ";
 }
-#cc-points-display{
+#cc-points-display, #points-display{
 	margin: 0%;
 	width: 50%;
   padding: 2pt;
 	font-weight: 300;
 }
-#cc-points-display .tr{
+#cc-points-display .tr, #points-display .tr{
 	font-size: 14pt;
 	font-family: sans-serif;
 	display: table-row;
 
 }
-#cc-points-display .td {
+#cc-points-display .td, #points-display .td {
 	display: table-cell;
 	padding-right: 20pt;
 }
-#cc-skills {
+#cc-skills, #skills {
 	display: block;
 	margin: auto;
 	border: solid red 1pt;
 }
-#cc-inventory .tr,  #cc-skills .tr{
+#cc-inventory .tr,  #cc-skills .tr, #inventory .tr,  #skills .tr{
 	display: table-row;
 	width: 100%;
 	padding: 2pt;
 
 }
-#cc-inventory .td,  #cc-skills .td{
+#cc-inventory .td,  #cc-skills .td, #inventory .td,  #skills .td{
 	display: table-cell;
 }
-#cc-skills label{
+#cc-skills label, #skills label{
 	font-size: 14pt;
 	font-family: sans-serif;
 }
