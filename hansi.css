@@ -427,6 +427,7 @@ html {
 	padding: 20pt;
 	box-shadow: 0 0 10pt black;
 	background-color: white;
+	position: fixed;
 }
 
 #upload input {
