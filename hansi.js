@@ -32,6 +32,22 @@ window.addEventListener("load", () => {
 		cache.selected = JSON.parse(localStorage.getItem("selected"));
 		fullUpdateSheet();
 	}
+	document.ondragover = (ev) => {
+		ev.preventDefault();
+		ev.dataTransfer.dropEffect = "move";
+	};
+	document.ondrop = (ev) => {
+		ev.preventDefault();
+		[...ev.dataTransfer.files].forEach(file => {
+			const reader = new FileReader();
+			reader.onload = () => {
+				cache.sheets.push(JSON.parse(reader.result));
+				cache.selected.sheet = cache.sheets.length - 1;
+				fullUpdateSheet();
+			};
+			reader.readAsText(file);
+		});
+	};
 	// Q("hitpoints").addEventListener("input", updateHitpoints);
 });
 
