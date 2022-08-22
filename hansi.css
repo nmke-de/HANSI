@@ -28,6 +28,7 @@ html {
 	z-index: 6;
 	background-color: white;
 	box-shadow: 0 0 10pt black;
+	overflow: auto;
 }
 
 .left h4 {
