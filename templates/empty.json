@@ -1,7 +1,7 @@
 {
 	"template": "empty",
-	"attribute_points": 175,
-	"stat_points": 500,
+	"attribute_points": 50,
+	"stat_points": 50,
 	"stats": [],
 	"skills": []
 }
