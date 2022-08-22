@@ -372,6 +372,7 @@ const itemNode = (name = "", index = -1, count = 1, description = "") => {
 		if (index > -1) {
 			cache.sheets[cache.selected.sheet].inventory.splice(index, 1);
 			node.decrementIndex();
+			storeLocally();
 		}
 		node.parentNode.removeChild(node);
 	}
