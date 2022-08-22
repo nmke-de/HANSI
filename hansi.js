@@ -360,6 +360,20 @@ const itemNode = (name = "", index = -1, count = 1, description = "") => {
 			cache.sheets[cache.selected.sheet].inventory[index].description = item_args[2].value;
 			storeLocally();
 		};
+		node.decrementIndex = () => {
+			index--;
+			node.nextSibling.decrementIndex();
+		};
+	}
+	child = A(node)(C("button"));
+	child.innerText = "🗑";
+	child.class = "remove-button";
+	child.onclick = () => {
+		if (index > -1) {
+			cache.sheets[cache.selected.sheet].inventory.splice(index, 1);
+			node.decrementIndex();
+		}
+		node.parentNode.removeChild(node);
 	}
 	return node;
 };
@@ -377,6 +391,7 @@ const entryAdderNode = (faketable, nodegen, subnode = null, getindex = null, act
 		action();
 		faketable.insertBefore(nodegen(subnode ? subnode : "", getindex ? getindex() : -1), faketable.lastChild);
 	}
+	node.decrementIndex = () => {};
 	return node;
 };
 
