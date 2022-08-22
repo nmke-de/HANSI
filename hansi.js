@@ -189,6 +189,9 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 	child.value = min + value;
 	input_methods.push(child);
 	if (attributes[0] != name) {
+		child = A(node)(C("input"));
+		child.type = "checkbox";
+		child.class = "haken";
 		input_methods[0].oninput = () => {
 			const value = parseInt(input_methods[0].value);
 			input_methods[1].value = value;
