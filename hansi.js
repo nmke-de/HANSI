@@ -424,7 +424,7 @@ const pointCounterNode = () => {
 		let refnode = Q(ftprefix + "stats");
 		let inode;
 		let sum = 0;
-		for (inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sum += (inode.lastChild.value - inode.lastChild.min);
+		for (inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sum += (inode.lastChild.previousSibling.value - inode.lastChild.previousSibling.min);
 		refnode = Q(ftprefix + "skills");
 		for (inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) sum += inode.lastChild.checked ? 15 : 0;
 		Q(ftprefix + "points-other").value = sum;
