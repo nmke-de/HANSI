@@ -62,6 +62,7 @@ const codify = (input) => {
 const templateChooserNode = () => {
 	let node = C("select");
 	node.id = "template-chooser";
+	node.title = "WARNING: Choosing a template will reset your progress!"
 	cache.templates.forEach((template, i) => {
 		let child = A(node)(C("option"));
 		child.value = i;
