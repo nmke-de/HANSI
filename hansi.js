@@ -456,7 +456,10 @@ const characterSubmitterNode = () => {
 	let node = C("div");
 	node.className = ftprefix + "submit";
 	const close = (ev) => {
-		if (ev.target.value == "confirm" && Q(ftprefix + "name").value && Q(ftprefix + "points").valid()) {
+		if (ev.target.value == "cancel") Q("sheet").removeChild(Q("dialog"));
+		else if (!Q(ftprefix + "name").value) alert("Wie heißt du?");
+		else if (!Q(ftprefix + "points").valid()) alert("Du hast zu viele oder zu wenige Punkte vergeben.");
+		else if (ev.target.value == "confirm") {
 			let sheet = {
 				name: Q(ftprefix + "name").value,
 				backstory: Q(ftprefix + "backstory").value,
@@ -495,8 +498,6 @@ const characterSubmitterNode = () => {
 			cache.selected.sheet = cache.sheets.length - 1;
 			fullUpdateSheet();
 		}
-		else if (ev.target.value == "cancel")
-			Q("sheet").removeChild(Q("dialog"));
 	};
 	let child = A(node)(C("button"));
 	child.value = "cancel";
