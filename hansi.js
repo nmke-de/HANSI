@@ -480,7 +480,7 @@ const characterSubmitterNode = () => {
 				inode.classList.forEach(cls => { if (cls != "tr") base.push(cls) });
 				sheet.stats.push({
 					name: inode.firstChild.innerText,
-					value: (inode.lastChild.value - inode.lastChild.min),
+					value: (inode.lastChild.previousSibling.value - inode.lastChild.previousSibling.min),
 					base: base
 				});
 			}
