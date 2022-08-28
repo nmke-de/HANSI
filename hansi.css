@@ -227,8 +227,7 @@ html {
 	weight: 300;
 }
 
-#cc-stats label::after,
-#stats label::after {
+.baseinfo span::after {
 	border: solid black 1pt;
 	margin: 2pt;
 	font-size: 9pt;
@@ -236,38 +235,32 @@ html {
 	padding-bottom: 0pt;
 }
 
-#cc-stats .bildung label::after,
-#stats .bildung label::after {
+.baseinfo .bildung::after {
 	content: "BI";
 	background-color: var(--cBildung);
 }
 
-#cc-stats .charisma label::after,
-#stats .charisma label::after {
+.baseinfo .charisma::after {
 	content: "CA";
 	background-color: var(--cCharisma);
 }
 
-#cc-stats .geschick label::after,
-#stats .geschick label::after {
+.baseinfo .geschick::after {
 	content: "GE";
 	background-color: var(--cGeschick);
 }
 
-#cc-stats .intelligenz label::after,
-#stats .intelligenz label::after {
+.baseinfo .intelligenz::after {
 	content: "IN";
 	background-color: var(--cIntelligenz);
 }
 
-#cc-stats .staerke label::after,
-#stats .staerke label::after {
+.baseinfo .staerke::after {
 	content: "ST";
 	background-color: var(--cStaerke);
 }
 
-#cc-stats .glueck label::after,
-#stats .glueck label::after {
+.baseinfo .gleuck::after {
 	content: "GL";
 	background-color: var(--cGlueck);
 }

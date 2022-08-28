@@ -181,6 +181,12 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 	child.className = "td";
 	child.for = codify(name);
 	child.innerText = name;
+	child = A(node)(C("span"));
+	child.classList.add("baseinfo");
+	attributes.forEach(attr => {
+		let baseinfo_node = A(child)(C("span"));
+		baseinfo_node.classList.add(codify(attr));
+	});
 	child = A(node)(C("input"));
 	child.className = "td";
 	child.name = codify(name);
