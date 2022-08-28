@@ -119,6 +119,7 @@ html {
 	font-weight: 900;
 	border: none;
 	font-size: 30pt;
+	margin-bottom: 30pt;
 }
 
 #dialog h2,
@@ -334,8 +335,9 @@ html {
 .cc-submit,
 .submit {
 	margin: 0%;
-	width: 50%;
+	width: 40%;
 	padding: 2pt;
+	display: inline-block;
 }
 
 .cc-submit button,
@@ -366,9 +368,10 @@ html {
 #cc-points-display,
 #points-display {
 	margin: 0%;
-	width: 50%;
+	width: 45%;
 	padding: 2pt;
 	font-weight: 300;
+	display: inline-block;
 }
 
 #cc-points-display .tr,
@@ -413,7 +416,23 @@ html {
 	font-size: 14pt;
 	font-family: sans-serif;
 }
+#cc-stats .medium,
+#stats .medium,
+#cc-stats .extreme,
+#stats .extreme{
+ font-size: 14pt;
+ font-family: sans-serif;
+ margin: 2pt;
+}
 
+#cc-stats .medium::before,
+#stats .medium::before{
+ content: "½: ";
+}
+#cc-stats .extreme::before,
+#stats .extreme::before{
+ content: "⅕: ";
+}
 
 
 
