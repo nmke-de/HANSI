@@ -48,12 +48,7 @@ window.addEventListener("load", () => {
 			reader.readAsText(file);
 		});
 	};
-	// Q("hitpoints").addEventListener("input", updateHitpoints);
 });
-
-const updateHitpoints = (ev) => {
-	Q("hitpoints-in-digits").innerHTML = ev.target.value;
-};
 
 const codify = (input) => {
 	return input.toLowerCase().replace(/ /g, '_').replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss");
@@ -176,6 +171,7 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 	if (!attributes) attributes = [name];
 	let node = C("div");
 	node.classList.add("tr");
+	node.classList.add("slide-50-node");
 	attributes.forEach(attr => node.classList.add(codify(attr)));
 	let child = A(node)(C("label"));
 	child.className = "td";
@@ -316,7 +312,8 @@ const skillNode = (name, checked = false, index = -1) => {
 	</div>
 	*/
 	let node = C("label");
-	node.className = "tr";
+	node.classList.add("tr");
+	node.classList.add("skill-node");
 	let child = A(node)(C("span"));
 	child.className = "td";
 	child.innerText = name;
@@ -353,7 +350,8 @@ const appendTemplateSkills = (faketable, template) => {
 const itemNode = (name = "", index = -1, count = 1, description = "") => {
 	// TODO define input-data names.
 	let node = C("div");
-	node.className = "tr";
+	node.classList.add("tr");
+	node.classList.add("item-node");
 	let child = A(node)(C("input"));
 	child.className = "td";
 	child.type = "number";
@@ -393,7 +391,7 @@ const itemNode = (name = "", index = -1, count = 1, description = "") => {
 	}
 	child = A(node)(C("button"));
 	child.innerText = "🗑";
-	child.class = "remove-button";
+	child.classList.add("remove-button");
 	child.onclick = () => {
 		if (index > -1) {
 			cache.sheets[cache.selected.sheet].inventory.splice(index, 1);
