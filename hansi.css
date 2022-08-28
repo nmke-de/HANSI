@@ -260,7 +260,7 @@ html {
 	background-color: var(--cStaerke);
 }
 
-.baseinfo .gleuck::after {
+.baseinfo .glueck::after {
 	content: "GL";
 	background-color: var(--cGlueck);
 }
