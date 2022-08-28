@@ -65,17 +65,31 @@ html {
 #character-list {
 	font-size: 13pt;
 	margin-left: 13pt;
+	margin-top: 30pt;
+}
+
+#character-list::before{
+	content: "Charakterliste";
+	font-family: sans-serif;
+	font-size: 20pt;
+	font-weight: 700;
+	margin-bottom: 20pt;
+	padding: 0%;
+	width: 100%;
+	border-bottom: solid black 2pt;
 }
 
 #character-list li {
 	font-size: 13pt;
 	font-family: sans-serif;
 	font-weight: 300;
+	margin-left: 13pt;
 }
 
 #character-list li button {
 	font-size: 13pt;
 	border: solid black 1pt;
+	display: inline;
 }
 
 .disclaimer {
@@ -113,7 +127,7 @@ html {
 }
 
 #dialog .name input,
-#sheet .name h1 {
+#sheet .name{
 	display: block;
 	text-align: center;
 	font-weight: 900;
@@ -425,6 +439,10 @@ html {
 #cc-stats .extreme::before,
 #stats .extreme::before{
  content: "⅕: ";
+}
+#cc-attributes .baseinfo,
+#attributes .baseinfo{
+ display: none;
 }
 
 

@@ -113,7 +113,7 @@ const hitpointNode = () => {
 	node.classList.add("tr");
 	node.classList.add("hp");
 	node.id = "hp";
-	let child = A(node)(C("span"));
+	let child = A(node)(C("h2"));
 	child.className = "td";
 	child.innerText = "Hitpoints";
 	child = A(node)(C("input"));
