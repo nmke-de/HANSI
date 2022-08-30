@@ -277,6 +277,7 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 const statAdderNode = () => {
 	let node = C("div");
 	node.className = "subnode";
+	node.id = "stat-adder-subnode";
 	let child = A(node)(C("input"));
 	child.type = "text";
 	child.placeholder = "Wertname";
@@ -478,7 +479,7 @@ const characterSubmitterNode = () => {
 			let inode;
 			for (inode = refnode.firstChild.nextSibling; !inode.isSameNode(refnode.lastChild); inode = inode.nextSibling) {
 				let base = [];
-				inode.classList.forEach(cls => { if (cls != "tr") base.push(cls) });
+				inode.classList.forEach(cls => { if (cls != "tr" && cls != "slide-50-node") base.push(cls) });
 				sheet.stats.push({
 					name: inode.firstChild.innerText,
 					value: (inode.lastChild.previousSibling.value - inode.lastChild.previousSibling.min),
@@ -535,7 +536,12 @@ const newCharacter = () => {
 	});
 	child = _(fakeTableNode("stats", ftprefix));
 	A(child)(h2Node("Werte"));
-	A(child)(entryAdderNode(child, (subnode) => slide50Node(subnode.firstChild.value, [...subnode.lastChild.selectedOptions].map(opt => opt.value)), statAdderNode()));
+	A(child)(entryAdderNode(child, (subnode) => {
+		let base = [...subnode.lastChild.selectedOptions].map(opt => codify(opt.value));
+		let node = slide50Node(subnode.firstChild.value, base, 0, maxBase(base));
+		base.forEach(attr => statGroup[attr].push(node));
+		return node;
+	}, statAdderNode()));
 	child = _(fakeTableNode("skills", ftprefix));
 	A(child)(h2Node("Andere Skills"));
 	A(child)(entryAdderNode(child, (subnode) => skillNode(subnode.value), skillAdderNode()));
