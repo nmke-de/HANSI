@@ -287,9 +287,6 @@ const statAdderNode = () => {
 		child.value = codify(attr);
 		child.innerText = attr;
 	});
-	child = A(select)(C("option"));
-	child.value = "";
-	child.innerText = "XX";
 	return node;
 };
 
