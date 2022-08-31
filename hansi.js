@@ -183,7 +183,9 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 		let baseinfo_node = A(child)(C("span"));
 		baseinfo_node.classList.add(codify(attr));
 	});
-	child = A(node)(C("input"));
+	let item_50_info_container = A(node)(C("div"));
+	item_50_info_container.classList.add("item-50-info-container");
+	child = A(item_50_info_container)(C("input"));
 	child.className = "td";
 	child.name = codify(name);
 	child.type = "number";
@@ -192,10 +194,10 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 	child.value = min + value;
 	let input_methods = [];
 	input_methods.push(child);
-	child = A(node)(C("span"));
+	child = A(item_50_info_container)(C("span"));
 	child.className = "td medium";
 	child.innerText = Math.round((min + value) / 2);
-	child = A(node)(C("span"));
+	child = A(item_50_info_container)(C("span"));
 	child.className = "td extreme";
 	child.innerText = Math.round((min + value) / 5);
 	child = A(node)(C("input"));
