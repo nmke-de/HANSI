@@ -537,6 +537,10 @@ const newCharacter = () => {
 	child = _(fakeTableNode("stats", ftprefix));
 	A(child)(h2Node("Werte"));
 	A(child)(entryAdderNode(child, (subnode) => {
+		if (!subnode.firstChild.value) {
+			alert("Ungültiger Wertename!");
+			throw 1;
+		}
 		let base = [...subnode.lastChild.selectedOptions].map(opt => codify(opt.value));
 		let node = slide50Node(subnode.firstChild.value, base, 0, maxBase(base));
 		base.forEach(attr => statGroup[attr].push(node));
@@ -544,7 +548,13 @@ const newCharacter = () => {
 	}, statAdderNode()));
 	child = _(fakeTableNode("skills", ftprefix));
 	A(child)(h2Node("Andere Skills"));
-	A(child)(entryAdderNode(child, (subnode) => skillNode(subnode.value), skillAdderNode()));
+	A(child)(entryAdderNode(child, (subnode) => {
+		if (!subnode.value) {
+			alert("Ungültiger Skillname!");
+			throw 1;
+		}
+		return skillNode(subnode.value);
+	}, skillAdderNode()));
 	child = _(fakeTableNode("inventory", ftprefix));
 	A(child)(h2Node("Inventar"));
 	A(child)(entryAdderNode(child, itemNode));
