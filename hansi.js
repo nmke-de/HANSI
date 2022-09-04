@@ -200,6 +200,9 @@ const slide50Node = (name, attributes = undefined, value = 0, min = 0, index = -
 	child = A(item_50_info_container)(C("span"));
 	child.className = "td extreme";
 	child.innerText = Math.round((min + value) / 5);
+	child = A(item_50_info_container)(C("span"));
+	child.className = "td delta";
+	child.innerText = Math.round(value);
 	child = A(node)(C("input"));
 	child.className = "td";
 	child.name = codify(name);
