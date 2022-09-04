@@ -163,8 +163,8 @@ html {
 	margin-bottom: 20pt;
 }
 
-#cc-attributes div,
-#attributes div {
+#cc-attributes .slide-50-node,
+#attributes .slide-50-node {
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -176,6 +176,10 @@ html {
 	transition: 1s;
 	text-decoration: none;
 	padding: 4%;
+}
+
+#cc-stats .slide-50-node{
+	margin-top: 20pt;
 }
 
 #cc-attributes div label,
@@ -239,6 +243,19 @@ html {
 	font-size: 14pt;
 	font-family: sans-serif;
 	weight: 300;
+}
+#cc-stats .item-50-info-container{
+	width: 20%;
+	display: inline-block;
+}
+#cc-stats input[type="range"]{
+	width: auto;
+	display: inline-block;
+}
+#cc-stats input[type="checkbox"]{
+	margin: 5pt;
+	width: 5%;
+	display: inline-block;
 }
 
 .baseinfo span::after {
