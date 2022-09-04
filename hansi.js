@@ -541,6 +541,8 @@ const newCharacter = () => {
 	});
 	child = _(fakeTableNode("stats", ftprefix));
 	A(child)(h2Node("Werte"));
+	let childlist = A(child)(C("div"));
+	childlist.classList.add("list-node");
 	A(child)(entryAdderNode(child, (subnode) => {
 		if (!subnode.firstChild.value) {
 			alert("Ungültiger Wertename!");
@@ -658,16 +660,22 @@ const fullUpdateSheet = () => {
 	});
 	child = _(fakeTableNode("stats"));
 	A(child)(h2Node("Werte"));
+	let childlist = A(child)(C("div"));
+	childlist.classList.add("list-node");
 	character.stats.forEach((stat, index) => {
 		let max_base = maxBase(stat.base, index);
-		let statNode = A(child)(slide50Node(stat.name, stat.base, stat.value, max_base, index));
+		let statNode = A(childlist)(slide50Node(stat.name, stat.base, stat.value, max_base, index));
 		stat.base.forEach(attr => statGroup[attr].push(statNode));
 	});
 	child = _(fakeTableNode("skills"));
 	A(child)(h2Node("Andere Skills"));
-	character.skills.forEach((skill, index) => A(child)(skillNode(skill.name, skill.value, index)));
+	childlist = A(child)(C("div"));
+	childlist.classList.add("list-node");
+	character.skills.forEach((skill, index) => A(childlist)(skillNode(skill.name, skill.value, index)));
 	child = _(fakeTableNode("inventory"));
 	A(child)(h2Node("Inventar"));
+	childlist = A(child)(C("div"));
+	childlist.classList.add("list-node");
 	character.inventory.forEach((item, index) => A(child)(itemNode(item.name, index, item.count, item.description)));
 	A(child)(entryAdderNode(child, itemNode, null, () => (cache.sheets[cache.selected.sheet].inventory.length - 1), () => character.inventory.push({
 		count: 1,
