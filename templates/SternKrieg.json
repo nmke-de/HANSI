@@ -1,0 +1,151 @@
+{
+	"template": "SternKrieg",
+	"attribute_points": 185,
+	"stat_points": 650,
+	"stats": [
+		{
+			"name": "Computertechnik",
+			"base": ["Bildung"]
+		},
+
+		{
+			"name": "Manövrieren",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Medizin",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Naturwissenschaft und Weltraumbiologie",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Technik",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Wirtschaft",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Wissen: Republik (Kernwelten)",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Wissen: Republik (Randwelten)",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Wissen: Sith-Union",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Wissen: Unterwelt",
+			"base": ["Bildung","Charisma"]
+		},
+		{
+			"name": "Kontakte",
+			"base": ["Charisma"]
+		},
+		{
+			"name": "Sympathie",
+			"base": ["Charisma"]
+		},
+		{
+			"name": "Täuschen",
+			"base": ["Charisma"]
+		},
+		{
+			"name": "Überreden",
+			"base": ["Charisma"]
+		},
+		{
+			"name": "Überzeugen",
+			"base": ["Charisma"]
+		},
+		{
+			"name": "Einschüchtern",
+			"base": ["Charisma", "Stärke"]
+		},
+		{
+			"name": "Akrobatik",
+			"base": ["Geschick"]
+		},
+		{
+			"name": "Fingerfertigkeit",
+			"base": ["Geschick"]
+		},
+		{
+			"name": "Heimlichkeit",
+			"base": ["Geschick"]
+		},
+		{
+			"name": "Klettern",
+			"base": ["Geschick"]
+		},
+		{
+			"name": "Schießen",
+			"base": ["Geschick"]
+		},
+		{
+			"name": "Bewaffneter Nahkampf",
+			"base": ["Geschick", "Stärke"]
+		},
+		{
+			"name": "Werfen",
+			"base": ["Geschick", "Stärke"]
+		},
+		{
+			"name": "Aktive Wahrnehmung",
+			"base": ["Intelligenz"]
+		},
+		{
+			"name": "Gedächtnis",
+			"base": ["Intelligenz"]
+		},
+		{
+			"name": "Passive Wahrnehmung",
+			"base": ["Intelligenz"]
+		},
+		{
+			"name": "Recherche",
+			"base": ["Intelligenz"]
+		},
+		{
+			"name": "Spurensuche",
+			"base": ["Intelligenz"]
+		},
+		{
+			"name": "Menschenkenntnis",
+			"base": ["Intelligenz", "Charisma"]
+		},
+		{
+			"name": "Ausdauer",
+			"base": ["Stärke"]
+		},
+		{
+			"name": "Unbewaffneter Nahkampf",
+			"base": ["Stärke"]
+		},
+		{
+			"name": "Macht - Angriff",
+			"base": ["Glück"]
+		},
+		{
+			"name": "Macht - Geist",
+			"base": ["Glück"]
+		},
+		{
+			"name": "Macht - Illusion",
+			"base": ["Glück"]
+		},
+		{
+			"name": "Macht - Körper",
+			"base": ["Glück"]
+		}
+	],
+	"skills": [
+		"Krissenichalta"
+	]
+}
