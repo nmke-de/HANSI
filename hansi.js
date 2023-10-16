@@ -122,7 +122,7 @@ const hitpointNode = () => {
 	child.type = "number";
 	child.min = 0;
 	child.max = 20;
-	child.value = cache.sheets[cache.selected.sheet].hitpoints;
+	child.value = cache.sheets[cache.selected.sheet].hitpointNode;
 	let input_methods = [];
 	input_methods.push(child);
 	child = A(node)(C("input"));
@@ -130,7 +130,7 @@ const hitpointNode = () => {
 	child.type = "range";
 	child.min = 0;
 	child.max = 20;
-	child.value = cache.sheets[cache.selected.sheet].hitpoints;
+	child.value = cache.sheets[cache.selected.sheet].hitpointNode;
 	input_methods.push(child);
 	const updateHP = (ev) => {
 		const value = parseInt((ev.target == input_methods[0] ? input_methods[0] : input_methods[1]).value);
