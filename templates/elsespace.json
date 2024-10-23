@@ -1,0 +1,118 @@
+{
+	"template": "elsespace",
+	"attribute_points": 185,
+	"stat_points": 650,
+	"stats": [
+		{
+			"name": "Geographie",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Medizin",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Naturwissenschaft",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Technik",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Wirtschaft",
+			"base": ["Bildung"]
+		},
+		{
+			"name": "Sympathie",
+			"base": ["Charisma"]
+		},
+		{
+			"name": "Täuschen",
+			"base": ["Charisma"]
+		},
+		{
+			"name": "Überreden",
+			"base": ["Charisma"]
+		},
+		{
+			"name": "Überzeugen",
+			"base": ["Charisma"]
+		},
+		{
+			"name": "Einschüchtern",
+			"base": ["Charisma", "Stärke"]
+		},
+		{
+			"name": "Akrobatik",
+			"base": ["Geschick"]
+		},
+		{
+			"name": "Driving Raumschiffe",
+			"base": ["Geschick"]
+		},
+		{
+			"name": "Fingerfertigkeit",
+			"base": ["Geschick"]
+		},
+		{
+			"name": "Heimlichkeit",
+			"base": ["Geschick"]
+		},
+		{
+			"name": "Klettern",
+			"base": ["Geschick"]
+		},
+		{
+			"name": "Schießen",
+			"base": ["Geschick"]
+		},
+		{
+			"name": "Bewaffneter Nahkampf",
+			"base": ["Geschick", "Stärke"]
+		},
+		{
+			"name": "Werfen",
+			"base": ["Geschick", "Stärke"]
+		},
+		{
+			"name": "Aktive Wahrnehmung",
+			"base": ["Intelligenz"]
+		},
+		{
+			"name": "Computer",
+			"base": ["Intelligenz"]
+		},
+		{
+			"name": "Gedächtnis",
+			"base": ["Intelligenz"]
+		},
+		{
+			"name": "Passive Wahrnehmung",
+			"base": ["Intelligenz"]
+		},
+		{
+			"name": "Menschenkenntnis",
+			"base": ["Intelligenz", "Charisma"]
+		},
+		{
+			"name": "Ausdauer",
+			"base": ["Stärke"]
+		},
+		{
+			"name": "Handwerk",
+			"base": ["Stärke"]
+		},
+		{
+			"name": "Schwimmen",
+			"base": ["Stärke"]
+		},
+		{
+			"name": "Unbewaffneter Nahkampf",
+			"base": ["Stärke"]
+		}
+	],
+	"skills": [
+		"Krissenichalta"
+	]
+}
